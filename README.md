@@ -1,4 +1,4 @@
-Sinatra
+Vakanz
 =============
 
 Brought to you by Lighthouse Labs
