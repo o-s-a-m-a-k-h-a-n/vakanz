@@ -1,7 +1,6 @@
 Vakanz
 =============
-
-Brought to you by Lighthouse Labs
+Travel Vacation Planner
 
 ## Getting Started
 
