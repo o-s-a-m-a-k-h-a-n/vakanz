@@ -8,16 +8,15 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-activerecord'
 
+gem 'pg'
 gem 'puma'
 
 
 group :development do
- gem 'sqlite3'
  gem 'shotgun'
- gem 'pry'
  gem 'tux'
 end
 
-group :production do
- gem 'pg'
-end
+# group :production do
+#  gem 'pg'
+# end
