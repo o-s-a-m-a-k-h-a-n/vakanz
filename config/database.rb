@@ -31,20 +31,24 @@ configure :development do
   encoding: 'utf8'
    )
  set :show_exceptions, true
- 
+
 end
 
-# configure :production do
-#  db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///localhost/mydb')
+configure :production do
+ # db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///localhost/mydb')
 
-#  ActiveRecord::Base.establish_connection(
-#    :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
-#    :host     => db.host,
-#    :username => db.user,
-#    :password => db.password,
-#    :database => db.path[1..-1],
-#    :encoding => 'utf8'
-#  )
-# end
+ ActiveRecord::Base.establish_connection(
+  adapter: 'postgresql',
+  database: 'dad94e4eu0v7tt',
+  username: 'ltunagcmksbtsc',
+  password: 'Ktn47JeHRJOYeTTwYW7pVREgdx',
+  host: 'ec2-54-227-254-152.compute-1.amazonaws.com',
+  port: 5432,
+  pool: 5,
+  encoding: 'unicode',
+  min_messages: 'error',
+  encoding: 'utf8'
+ )
+end
 
 end
