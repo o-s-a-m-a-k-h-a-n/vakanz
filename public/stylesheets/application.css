@@ -10,8 +10,7 @@ body {
 
 /*jumbotron AND video */
 
-.jumbotron{
-
+.jumbotron {
   z-index:-101;
   height: 400px;
   margin: 0 auto;
@@ -48,7 +47,6 @@ body {
   width: auto;
   height: auto;
   z-index: -100;
-
 }
 
 
@@ -60,6 +58,13 @@ body {
 #sticker {
   top: 375px;
   position: absolute;
+  z-index: 100;
+}
+
+#sticker_results {
+  top: 0;
+  left: 0;
+  position: fixed;
   z-index: 100;
 }
 
@@ -88,6 +93,10 @@ input {
   border-radius: 0%;
   width: 8em;
   height: 40px;
+}
+
+.top_space {
+  margin-top: 100px;
 }
 
 /*row*/
@@ -125,7 +134,7 @@ img:hover{
 
 /*footer*/
 .footer {
-  height: 250px;
+  height: 160px;
   background:url('/images/footer.png');
 }
 

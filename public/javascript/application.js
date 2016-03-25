@@ -7,8 +7,7 @@ vid.muted = true;
 
   // sticky header
 $("#sticker").sticky({topSpacing:0});
-
-
+// $("#sticker_results").sticky({topSpacing:0});
 });
 
 
