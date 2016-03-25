@@ -13,6 +13,8 @@ gem 'puma'
 
 gem 'nokogiri'
 
+gem 'digest'
+
 
 group :development do
  gem 'shotgun'

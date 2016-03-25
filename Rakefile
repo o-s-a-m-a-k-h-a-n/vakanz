@@ -80,6 +80,14 @@ task "fetch:city_list" do
   end
 end
 
+desc 'Get flickr images by city & date range'
+task "fetch:flickr" do
+  city_name = "vancouver"
+  flickr_api_key = ""
+  URL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=#{flickr_api_key}&tags=#{city_name}&format=json&nojsoncallback=1"
+  flickr_data = JSON.parse(open(URL).read)
+end
+
 # make tables for images(w/ source col), more temps (low, mean)
 # yearly temp data
 # add search_count/hits column to the cities table
