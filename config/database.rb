@@ -31,7 +31,7 @@ configure :development do
   encoding: 'utf8'
    )
  set :show_exceptions, true
- puts "Dev db connected"
+ puts "+++++ Connected to development database successfully +++++"
 end
 
 configure :production do

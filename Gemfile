@@ -11,6 +11,8 @@ gem 'sinatra-activerecord'
 gem 'pg'
 gem 'puma'
 
+gem 'nokogiri'
+
 
 group :development do
  gem 'shotgun'
