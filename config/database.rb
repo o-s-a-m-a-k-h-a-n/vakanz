@@ -34,20 +34,17 @@ configure :development do
  puts "+++++ Connected to development database successfully +++++"
 end
 
+
 configure :production do
- 
- ActiveRecord::Base.establish_connection(
-  adapter: 'postgresql',
-  database: ENV['proddb-name'],
-  username: ENV['proddb-user'],
-  password: ENV['proddb-password'],
-  host: ENV['proddb-host'],
-  port: 5432,
-  pool: 5,
-  encoding: 'unicode',
-  min_messages: 'error',
-  encoding: 'utf8'
- )
+  db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///localhost/mydb')
+  ActiveRecord::Base.establish_connection(
+    :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
+    :host     => db.host,
+    :username => db.user,
+    :password => db.password,
+    :database => db.path[1..-1],
+    :encoding => 'utf8'
+  )
 end
 
 end
