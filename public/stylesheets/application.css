@@ -66,6 +66,7 @@ body {
   left: 0;
   position: fixed;
   z-index: 100;
+  width: 100%;
 }
 
 .search {
@@ -166,6 +167,14 @@ img:hover{
 .hr-footer {
   width: 25%;
 }
+
+/*google map*/
+#wn2 {
+  top: 9px;
+  height: 330px !important;
+  display: block;
+  }
+
 /*responsive layout*/
 
 @media screen and (max-width: 480px) {
