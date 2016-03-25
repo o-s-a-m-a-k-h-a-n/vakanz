@@ -49,7 +49,6 @@ configure :production do
   min_messages: 'error',
   encoding: 'utf8'
  )
- puts "+++++ Connected to development database successfully +++++"
 end
 
 end

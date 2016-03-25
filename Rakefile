@@ -5,15 +5,19 @@ require ::File.expand_path('../config/environment', __FILE__)
 Rake::Task["db:create"].clear
 Rake::Task["db:drop"].clear
 
-# NOTE: Assumes SQLite3 DB << --- Needs to be changed for PG
+# NOTE: Assumes SQLite3 DB <- changed to Postgres. Needs to be reviewed by TA
 desc "create the database"
 task "db:create" do
-  touch 'db/db.sqlite3'
+  # touch 'db/db.sqlite3'
+  conn = PG.connect(dbname:'postgres')
+  puts "Database 'app_vakanz' created successfully" if conn.exec('CREATE DATABASE app_vakanz')
 end
 
 desc "drop the database"
 task "db:drop" do
-  rm_f 'db/db.sqlite3'
+  # rm_f 'db/db.sqlite3'
+  conn = PG.connect(dbname:'postgres')
+  puts "Database 'app_vakanz' created successfully" if conn.exec('DROP DATABASE app_vakanz')
 end
 
 desc 'Retrieves the current schema version number'
@@ -21,17 +25,6 @@ task "db:version" do
   puts "Current version: #{ActiveRecord::Migrator.current_version}"
 end
 
-desc 'Seed City Data'
-task "db:seed_cities_table" do
-  # insert each city into db along with lat-long and country
-
-end
-
-desc 'Update City Data'
-task "db:seed_cities_table" do
-  # insert each city into db along with lat-long and country
-  
-end
 
 desc 'Retrieves (scrapes) Weather Data from Wikipedia City pages and store in DB'
 task "fetch:weather" do
@@ -86,3 +79,10 @@ task "fetch:city_list" do
     puts "#{city_name} Lat: #{lat} Long:#{long}"
   end
 end
+
+# make tables for images(w/ source col), more temps (low, mean)
+# yearly temp data
+# add search_count/hits column to the cities table
+# complete seed script and seed all data from
+# NL/Wikipedia.
+# add a table for
