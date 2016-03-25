@@ -38,10 +38,10 @@ configure :production do
  
  ActiveRecord::Base.establish_connection(
   adapter: 'postgresql',
-  database: 'dad94e4eu0v7tt',
-  username: 'ltunagcmksbtsc',
-  password: 'Ktn47JeHRJOYeTTwYW7pVREgdx',
-  host: 'ec2-54-227-254-152.compute-1.amazonaws.com',
+  database: ENV['proddb-name'],
+  username: ENV['proddb-user'],
+  password: ENV['proddb-password'],
+  host: ENV['proddb-host'],
   port: 5432,
   pool: 5,
   encoding: 'unicode',
