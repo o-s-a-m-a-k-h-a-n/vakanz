@@ -11,14 +11,14 @@ desc "create the database"
 task "db:create" do
   # touch 'db/db.sqlite3'
   conn = PG.connect(dbname:'postgres')
-  puts "Database 'app_vakanz' created successfully" if conn.exec('CREATE DATABASE app_vakanz')
+  puts "Database 'app_vakanz' CREATED successfully" if conn.exec('CREATE DATABASE app_vakanz')
 end
 
 desc "drop the database"
 task "db:drop" do
   # rm_f 'db/db.sqlite3'
   conn = PG.connect(dbname:'postgres')
-  puts "Database 'app_vakanz' created successfully" if conn.exec('DROP DATABASE app_vakanz')
+  puts "Database 'app_vakanz' DROPPED successfully" if conn.exec('DROP DATABASE app_vakanz')
 end
 
 desc 'Retrieves the current schema version number'
@@ -88,7 +88,7 @@ task "fetch:nomad_list" do
       region = city['info']['region']['name']
       internet_download_speed = city['info']['internet']['speed']['download']
       wiki_slug = name.gsub(/\s/,"_")
-      flickr_tag = name.gsub(/\s/,"%20")
+      flickr_tag = name.gsub(/\s/,"+")
       airbnb_median = city['cost']['airbnb_median']['USD']
       airbnb_vs_apartment_price_ratio = city['cost']['airbnb_vs_apartment_price_ratio']
       beer_in_cafe = city['cost']['beer_in_cafe']['USD']
@@ -117,8 +117,8 @@ end
 desc 'Get first page of Flickr Images response by City tag and store full hyperlink in database'
 task "fetch:flickr" do
 if City.count > 0
-    cities = City.all    
-    cities.each do |city|
+    city = City.first  
+    # cities.each do |city|
       city_name = city.flickr_tag
       flickr_api_key = ENV['FLICKR_AUTH_KEY']
       link = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=#{flickr_api_key}&tags=#{city_name}&format=json&nojsoncallback=1"
@@ -126,9 +126,11 @@ if City.count > 0
       # this should have been dealt with when making 'flickr_tag'. TODO: edit fetch:nomad_list to clean flickr_tag
       encoded_link = URI.encode(link)
       flickr_data_for_city = JSON.parse(open(URI.parse(encoded_link)).read)
-      puts "#{city_name}: #{flickr_data_for_city['photos']['photo'].count}"
+
+
+      puts "#{city_name}: #{flickr_data_for_city['photos']['photo']}"
       # TODO: create migration to remove all columns and store full flickr image url to db from task
-    end
+    # end
   else
     puts "ERROR: The database seems to have some seed data in place.\nPlease run following rake tasks (in given order) before attempting to seed:\n\t'rake db:drop'\n\t'rake db:create'\n\t'rake db:migrate'\n\t'rake fetch:nomad_list'"
   end
