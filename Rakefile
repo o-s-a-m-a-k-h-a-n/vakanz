@@ -66,29 +66,38 @@ end
 desc 'Fetch City List and save to file'
 task "fetch:city_list" do
   puts "Loading city list"
-  # file = File.read('nl_city_list')
+
   file = open("https://nomadlist.com/api/v2/list/cities").read
   data_hash = JSON.parse(file)
-  city_count = data_hash['result'].length
-  data_hash['result'].each do |city|
-    city_name = city['info']['city']['name']
-    lat = city['info']['location']['latitude']
-    long = city['info']['location']['longitude']
-    # if city_name.match('\s')
-    city_name.gsub!(/\s/,"_")
-    # end
-    puts "#{city_name} Lat: #{lat} Long:#{long}"
+  
+  data_hash['result'].each_with_index do |city, index|
+    
+    name = city['info']['city']['name']
+    latitude = city['info']['location']['latitude']
+    longitude = city['info']['location']['longitude']
+    country = city['info']['country']['name']
+    region = city['info']['region']['name']
+    internet_download_speed = city['info']['internet']['speed']['download']
+    wiki_slug = name.gsub(/\s/,"_")
+    flickr_tag = name.gsub(/\s/,"%20")
+    airbnb_median = city['cost']['airbnb_median']['USD']
+    airbnb_vs_apartment_price_ratio = city['cost']['airbnb_vs_apartment_price_ratio']
+    beer_in_cafe = city['cost']['beer_in_cafe']['USD']
+    coffee_in_cafe = city['cost']['coffee_in_cafe']['USD']
+    hotel = city['cost']['hotel']['USD']
+    non_alcoholic_drink_in_cafe = city['cost']['non_alcoholic_drink_in_cafe']['USD']
+    puts "\n#{index}: #{name}, #{country} (#{region}) - Lat: #{latitude} Long:#{longitude} DL: #{internet_download_speed} Wiki:#{wiki_slug} Flickr:#{flickr_tag} Airbnb: #{airbnb_median} (#{airbnb_vs_apartment_price_ratio}) Beer:#{beer_in_cafe} Coffee:#{coffee_in_cafe} Hotel:#{hotel} Coke:#{non_alcoholic_drink_in_cafe}"
+
   end
 end
 
 desc 'Get flickr images by city & date range'
 task "fetch:flickr" do
-  no_data_count = 0
-  city_count = 0
-  file = open("https://nomadlist.com/api/v2/list/cities").read
-  city_hash = JSON.parse(file)
+  json_feed = open("https://nomadlist.com/api/v2/list/cities").read
+  city_hash = JSON.parse(json_feed)
+  
   city_hash['result'].each do |city|
-    city_count +=1
+    
     city_name = city['info']['city']['name'].downcase  
     city_name.gsub!(/\s/,"%20")
     
@@ -101,21 +110,11 @@ task "fetch:flickr" do
     link = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=#{flickr_api_key}&tags=#{city_name}&format=json&nojsoncallback=1"
     
     flickr_data_for_city = JSON.parse(open(link).read)
-    if flickr_data_for_city['total'] == 0
-      no_data_count +=1
-    end
-    puts "#{city_count}, #{no_data_count}, #{flickr_data_for_city['photos']['photo'].count}"
-    # puts "#{city_count} \n\n #{flickr_data_for_city['photos'].length}"
-    # puts flickr_data_for_city
-  # puts "City: #{city_name}, \n Pictures: #{totalphotos}, No data count: #{no_data_count}"
-  # puts flickr_data[:photos].inspect
-  # puts "\n\n\n ----- #{no_data_count} --------"
+    puts flickr_data_for_city['photos']['photo'].count
   end
 end
 
 # make tables for images(w/ source col), more temps (low, mean)
 # yearly temp data
-# add search_count/hits column to the cities table
 # complete seed script and seed all data from
 # NL/Wikipedia.
-# add a table for
