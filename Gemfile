@@ -12,10 +12,8 @@ gem 'puma'
 
 gem 'nokogiri'
 
-gem 'digest'
-
-
 group :development do
+ gem 'dotenv'
  gem 'shotgun'
  gem 'tux'
 end
