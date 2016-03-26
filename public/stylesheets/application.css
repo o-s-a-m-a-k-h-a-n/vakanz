@@ -12,25 +12,28 @@ body {
 
 .jumbotron {
   z-index:-101;
-  height: 400px;
+  height: 450px;
   margin: 0 auto;
-  overflow: hidden !important;
   background-color: transparent;
 }
 
 .hero-heading {
-  /*color: #FFF !important;*/
-  color: #FAEBFF !important; 
+  color: #FFF !important;
+  /*color: #FAEBFF !important; */
   font-size: 12em !important;
+  text-shadow: 1px 1px 1px #080000;
   text-align: center;
   display: block;
+  font-family: 'Exo 2', sans-serif;
 }
 
 .hero-sub {
+  font-family: 'Pacifico', cursive;
   color: #fff;
   text-align: center;
   display: block;
   font-size: 1.5em;
+  text-shadow: 1px 1px 1px black;
 }
 
 #video1 { 
@@ -40,7 +43,7 @@ body {
     -o-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
   position: absolute;
-  top: 0;
+  top: -2%;
   left: 50%;
   min-width: 100%;
   min-height: 100%;
@@ -51,6 +54,7 @@ body {
 
 
 /*search bar*/
+
 .container {
   width: 85%;
 }
@@ -59,6 +63,8 @@ body {
   top: 375px;
   position: absolute;
   z-index: 100;
+  width: 100%;
+  margin: -10px 0 0 0;
 }
 
 #sticker_results {
@@ -72,9 +78,9 @@ body {
 .search {
   background-color: rgba(0,0,0,0.5);
   height: 80px;
-  margin: 0 auto;
+  /*margin: 0 auto;*/
   display: block;
-  position: relative;
+  position: absolute;
   width: 100%;
   padding: 1.5em 0 0 7.5em;
 }
