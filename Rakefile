@@ -95,7 +95,7 @@ task "fetch:flickr" do
     city_name = "wroclaw" if city_name == "wrocław"
     next if city_name.match(/medell[a-z]*/)
     
-    flickr_api_key = "9e2b399cf2eeb55ac86003e6e6c47692"
+    flickr_api_key = ""
     
     link = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=#{flickr_api_key}&tags=#{city_name}&format=json&nojsoncallback=1"
     
