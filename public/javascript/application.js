@@ -1,4 +1,14 @@
 $(document).ready(function() {
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  // mute video
+var vid = document.getElementById("video1");
+vid.muted = true;
+
+  // sticky header
+$("#sticker").sticky({topSpacing:0});
+// $("#sticker_results").sticky({topSpacing:0});
+
+
 });
+
+
