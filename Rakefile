@@ -64,15 +64,23 @@ task "fetch:weather" do
 end
 
 desc 'Fetch City List and save to file'
-task "fetch:city_list" do
-  puts "Loading city list"
+task "fetch:nomad_list" do
 
-  file = open("https://nomadlist.com/api/v2/list/cities").read
-  data_hash = JSON.parse(file)
+  json_file = open("https://nomadlist.com/api/v2/list/cities").read
+  data_hash = JSON.parse(json_file)
   
   data_hash['result'].each_with_index do |city, index|
     
     name = city['info']['city']['name']
+    
+    if name == "kraków"
+      name = "krakow"
+    elsif name == "wrocław" 
+      name = "wroclaw"
+    elsif name.match(/medell[a-z]*/)
+      name = "medellin"
+    end
+
     latitude = city['info']['location']['latitude']
     longitude = city['info']['location']['longitude']
     country = city['info']['country']['name']
@@ -86,9 +94,19 @@ task "fetch:city_list" do
     coffee_in_cafe = city['cost']['coffee_in_cafe']['USD']
     hotel = city['cost']['hotel']['USD']
     non_alcoholic_drink_in_cafe = city['cost']['non_alcoholic_drink_in_cafe']['USD']
-    puts "\n#{index}: #{name}, #{country} (#{region}) - Lat: #{latitude} Long:#{longitude} DL: #{internet_download_speed} Wiki:#{wiki_slug} Flickr:#{flickr_tag} Airbnb: #{airbnb_median} (#{airbnb_vs_apartment_price_ratio}) Beer:#{beer_in_cafe} Coffee:#{coffee_in_cafe} Hotel:#{hotel} Coke:#{non_alcoholic_drink_in_cafe}"
-
+    px250 = "https://nomadlist.com"+city['media']['image']['250']
+    px500 = "https://nomadlist.com"+city['media']['image']['500']
+    px1000 = "https://nomadlist.com"+city['media']['image']['1000']
+    px1500 = "https://nomadlist.com"+city['media']['image']['1500']
+    nightlife = city['scores']['nightlife']
+    safety = city['scores']['safety']
+    free_wifi_available = city['scores']['free_wifi_available']
+    city_record = City.create(name: name, country: country, region: region, latitude: latitude, longitude: longitude, internet_download_speed: internet_download_speed, wiki_slug: wiki_slug, flickr_tag: flickr_tag)
+    cost_record = Cost.create(cities_id: city_record.id, airbnb_median: airbnb_median, airbnb_vs_apartment_price_ratio: airbnb_vs_apartment_price_ratio, beer_in_cafe: beer_in_cafe, coffee_in_cafe: coffee_in_cafe, hotel: hotel, non_alcoholic_drink_in_cafe: non_alcoholic_drink_in_cafe)
+    score_record = Score.create(cities_id: city_record.id, nightlife: nightlife, safety: safety, free_wifi_available: free_wifi_available)
+    featured_image_record = FeaturedImage.create(cities_id: city_record.id, px250: px250, px500: px500, px1000: px1000, px1500: px1500)
   end
+
 end
 
 desc 'Get flickr images by city & date range'
@@ -111,6 +129,7 @@ task "fetch:flickr" do
     
     flickr_data_for_city = JSON.parse(open(link).read)
     puts flickr_data_for_city['photos']['photo'].count
+    # TODO: create migration to remove all columns and store full flickr image url to db from task
   end
 end
 
