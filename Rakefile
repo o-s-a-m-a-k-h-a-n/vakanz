@@ -82,10 +82,34 @@ end
 
 desc 'Get flickr images by city & date range'
 task "fetch:flickr" do
-  city_name = "vancouver"
-  flickr_api_key = ""
-  URL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=#{flickr_api_key}&tags=#{city_name}&format=json&nojsoncallback=1"
-  flickr_data = JSON.parse(open(URL).read)
+  no_data_count = 0
+  city_count = 0
+  file = open("https://nomadlist.com/api/v2/list/cities").read
+  city_hash = JSON.parse(file)
+  city_hash['result'].each do |city|
+    city_count +=1
+    city_name = city['info']['city']['name'].downcase  
+    city_name.gsub!(/\s/,"%20")
+    
+    city_name = "krakow" if city_name == "kraków"
+    city_name = "wroclaw" if city_name == "wrocław"
+    next if city_name.match(/medell[a-z]*/)
+    
+    flickr_api_key = "9e2b399cf2eeb55ac86003e6e6c47692"
+    
+    link = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=#{flickr_api_key}&tags=#{city_name}&format=json&nojsoncallback=1"
+    
+    flickr_data_for_city = JSON.parse(open(link).read)
+    if flickr_data_for_city['total'] == 0
+      no_data_count +=1
+    end
+    puts "#{city_count}, #{no_data_count}, #{flickr_data_for_city['photos']['photo'].count}"
+    # puts "#{city_count} \n\n #{flickr_data_for_city['photos'].length}"
+    # puts flickr_data_for_city
+  # puts "City: #{city_name}, \n Pictures: #{totalphotos}, No data count: #{no_data_count}"
+  # puts flickr_data[:photos].inspect
+  # puts "\n\n\n ----- #{no_data_count} --------"
+  end
 end
 
 # make tables for images(w/ source col), more temps (low, mean)
