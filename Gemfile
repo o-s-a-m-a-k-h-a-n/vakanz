@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 
+gem 'dotenv'
 gem 'rake'
 gem 'activesupport'
 
@@ -13,7 +14,6 @@ gem 'puma'
 gem 'nokogiri'
 
 group :development do
- gem 'dotenv'
  gem 'shotgun'
  gem 'tux'
 end
