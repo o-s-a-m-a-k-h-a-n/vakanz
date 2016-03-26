@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
 var address= "San Francisco"
+
  $("#wn2").whatsnearby({ 
      zoom:13,
      width:"99%",
@@ -9,6 +10,8 @@ var address= "San Francisco"
      placeMainMarker: false,
      placesTypes: [ 'restaurants', 'cafe', 'museum', 'hotels', 'art_gallery', 'aquarium', 'park', 'stadium' ]
    });
+
+ 
   $('button').click(function(e){
     var address = document.getElementById('location').value
   
