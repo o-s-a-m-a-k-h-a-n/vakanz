@@ -62,12 +62,12 @@
           <div class="col-md-10 col-md-offset-1">
             <div class="form-section">
               <div class="row">
-                <form role="form">
+                <form role="form" action="/search" method="GET">
                   <div class="col-md-3 col-sm-3 col-xs-8 no-padding">
                     <div class="form-group">
                       <label class="sr-only" for="location">Location</label>
-                      <input class="form-control" id="location" placeholder=
-                      "Where would you like to go?" type="text">
+                      <input class="form-control" id="location" name="location"
+                        placeholder= "Where would you like to go?" type="text">
                     </div>
                   </div>
 
@@ -102,7 +102,7 @@
 
                   <div class="col-md-3 col-sm-3 col-xs-1">
                     <button class="btn btn-default btn-primary" id="submit"
-                    type="submit">Search</button>
+                    type="submit"> Search</a></button>
                   </div>
                 </form>
               </div>
@@ -206,5 +206,6 @@
   <hr class="hr-footer">
   <h4>&copy; Vakanz</h4>
   </div>
+
 </body>
 </html>

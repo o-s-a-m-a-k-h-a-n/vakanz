@@ -51,9 +51,13 @@
                   <div class="col-md-3 col-sm-3 col-xs-8 no-padding">
                     <div class="form-group">
                       <div class="ui-widget">
-                      <label class="sr-only" for="location">Location</label>
-                      <input class="form-control" id="location" placeholder=
-                      "Where would you like to go?" type="text">
+                        <label class="sr-only" for="location">Location</label>
+                        <input class="form-control" id="location" 
+                          placeholder= "Where would you like to go?" 
+                          type="text"
+                          <%= params[:location] && !params[:location].empty? ?
+                              "value='#{params[:location]}'" : "" %>
+                        >
                       </div>
                     </div>
                   </div>
@@ -99,7 +103,7 @@
 
   <div class="container">
     <div class="top_space">
-      <h2>Your Search Results for...San Francisco</h2>
+      <h2><span id="result_search">San Francisco</span></h2>
     </div>
   </div>
 

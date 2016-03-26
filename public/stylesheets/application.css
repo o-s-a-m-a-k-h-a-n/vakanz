@@ -79,6 +79,14 @@ body {
   padding: 1.5em 0 0 7.5em;
 }
 
+.search-link a{
+  text-decoration: none;
+}
+
+.search-link a:hover {
+  text-decoration: none;
+}
+
 input {
   border-radius: 0% !important;
   height: 40px !important;
@@ -167,6 +175,8 @@ img:hover{
 .hr-footer {
   width: 25%;
 }
+
+.ui-autocomplete { height: 250px; overflow-y: hidden; overflow-x: hidden;}
 
 /*google map*/
 #wn2 {

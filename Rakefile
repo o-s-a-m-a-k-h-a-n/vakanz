@@ -71,12 +71,13 @@ task "fetch:city_list" do
   city_count = data_hash['result'].length
   data_hash['result'].each do |city|
     city_name = city['info']['city']['name']
-    lat = city['info']['location']['latitude']
-    long = city['info']['location']['longitude']
+    country_name = city['info']['country']['name']
+    # lat = city['info']['location']['latitude']
+    # long = city['info']['location']['longitude']
     # if city_name.match('\s')
-    city_name.gsub!(/\s/,"_")
+    # city_name.gsub!(/\s/,"_")
     # end
-    puts "#{city_name} Lat: #{lat} Long:#{long}"
+    puts "#{city_name}, #{country_name}"
   end
 end
 
