@@ -11,21 +11,27 @@ var address= "San Francisco"
      placesTypes: [ 'restaurants', 'cafe', 'museum', 'hotels', 'art_gallery', 'aquarium', 'park', 'stadium' ]
    });
 
- 
-  $('button').click(function(e){
+
+  function pressSearchButton(e){
     var address = document.getElementById('location').value
-  
+    document.getElementById('result_search').innerHTML = address;
     $("#wn2").whatsnearby({ 
-     zoom:13,
+     zoom:15,
      width:"99%",
      address: address,
      placesRadius: 10000,
      placeMainMarker: false,
      placesTypes: [ 'restaurants', 'cafe', 'museum', 'hotels', 'art_gallery', 'aquarium', 'park', 'stadium' ]
    });
-    e.preventDefault();
-  });
+    if (e) {
+      e.preventDefault();
+    }
+  }
 
-  
+  $('button').click(pressSearchButton);
+
+  setTimeout(pressSearchButton, 0);  
+
+
  });
 

@@ -105,6 +105,7 @@ task "fetch:nomad_list" do
     cost_record = Cost.create(cities_id: city_record.id, airbnb_median: airbnb_median, airbnb_vs_apartment_price_ratio: airbnb_vs_apartment_price_ratio, beer_in_cafe: beer_in_cafe, coffee_in_cafe: coffee_in_cafe, hotel: hotel, non_alcoholic_drink_in_cafe: non_alcoholic_drink_in_cafe)
     score_record = Score.create(cities_id: city_record.id, nightlife: nightlife, safety: safety, free_wifi_available: free_wifi_available)
     featured_image_record = FeaturedImage.create(cities_id: city_record.id, px250: px250, px500: px500, px1000: px1000, px1500: px1500)
+
   end
 
 end

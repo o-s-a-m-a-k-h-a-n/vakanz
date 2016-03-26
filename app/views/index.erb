@@ -17,6 +17,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link href="/stylesheets/application.css" rel="stylesheet">
 
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Exo+2:800' rel='stylesheet' type='text/css'>
+
 
 <!-- scripts -->
   <script src="/javascript/es5-shim.min.js" type="text/javascript"></script>
@@ -42,7 +45,7 @@
 
 
   <div class="jumbotron">
-    <h1 class="hero-heading"><strong>Vakanz</strong>
+    <h1 class="hero-heading"> <span><i class="fa fa-viacoin"></i></span>akanz
     </h1>
 
 
@@ -50,24 +53,21 @@
     <video autoplay="" id="video1" loop=""><source class="fullscreen-bg__video"
     src="https://a0.muscache.com/airbnb/static/host_banner_v1.mp4" type=
     "video/mp4"></video>
-    </div>
-  <!-- search bar -->
-  <!-- fix sticky header -->
-
-<header>
+</div>
+    <header>
   <div id="sticker">
     <div class="search">
       <div class="container">
         <div class="row">
-          <div class="col-md-10 col-md-offset-1">
+          <div class="col-md-10 col-sm-10 col-xs-12 col-md-offset-1 col-sm-offset-1">
             <div class="form-section">
               <div class="row">
-                <form role="form">
+                <form role="form" action="/search" method="GET">
                   <div class="col-md-3 col-sm-3 col-xs-8 no-padding">
                     <div class="form-group">
                       <label class="sr-only" for="location">Location</label>
-                      <input class="form-control" id="location" placeholder=
-                      "Where would you like to go?" type="text">
+                      <input class="form-control" id="location" name="location"
+                        placeholder= "Where would you like to go?" type="text">
                     </div>
                   </div>
 
@@ -102,7 +102,7 @@
 
                   <div class="col-md-3 col-sm-3 col-xs-1">
                     <button class="btn btn-default btn-primary" id="submit"
-                    type="submit">Search</button>
+                    type="submit"> Search</a></button>
                   </div>
                 </form>
               </div>
@@ -114,8 +114,13 @@
     </div>
   </div>
 </header>
-    <!-- top cities -->
+<!-- </div> -->
+  <!-- search bar -->
+  <!-- fix sticky header -->
 
+
+    <!-- top cities -->
+<br>
     <h1 class="top-cities">Top Cities</h1>
     <h5 class="top-cities-sub">Discover the most searched cities.</h5>
     <br>
@@ -206,5 +211,6 @@
   <hr class="hr-footer">
   <h4>&copy; Vakanz</h4>
   </div>
+
 </body>
 </html>
