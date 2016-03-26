@@ -83,6 +83,3 @@ DEPENDENCIES
   sinatra-activerecord
   sinatra-contrib
   tux
-
-BUNDLED WITH
-   1.11.2

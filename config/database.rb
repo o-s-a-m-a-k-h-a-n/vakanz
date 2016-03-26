@@ -20,14 +20,10 @@ configure :development do
  
  ActiveRecord::Base.establish_connection(
   adapter: 'postgresql',
-  # database: ENV['devdb-name'],
-  # username: ENV['devdb-user'],
-  # password: ENV['devdb-password'],
-  # host: ENV['devdb-host'],
-  database: 'app_vakanz',
-  username: 'development',
-  password: 'development',
-  host: 'localhost',
+  database: ENV['DEV_DB_NAME'],
+  username: ENV['DEV_DB_USER'],
+  password: ENV['DEV_DB_PASSWORD'],
+  host: ENV['DEV_DB_HOST'],
   port: 5432,
   pool: 5,
   encoding: 'unicode',
