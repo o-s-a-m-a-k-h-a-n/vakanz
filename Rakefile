@@ -68,6 +68,20 @@ task "fetch:wikipedia" do
             end
           end
 
+          # store average rainy days
+          if row.css("th").text == "Average rainy days (≥ 1 mm)"
+            row.css("td")[0..-2].each_with_index do |data_point, index|
+              AverageRainyDay.create(cities_id:city.id, months_id: index+1, count: data_point.text[0..4])
+            end
+          end
+
+          # store average relative humidities
+          if row.css("th").text == "Average relative humidity (%)"
+            row.css("td")[0..-2].each_with_index do |data_point, index|
+              AverageRelativeHumidity.create(cities_id:city.id, months_id: index+1, percent: data_point.text[0..4])
+            end
+          end
+
         end
 
       end
