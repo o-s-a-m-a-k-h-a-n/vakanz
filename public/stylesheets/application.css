@@ -1,4 +1,5 @@
-html, body {
+/*html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
   font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -13,13 +14,15 @@ body {
 .jumbotron {
   z-index:-101;
   height: 450px;
-  margin: 0 auto;
+  margin: 0 auto !important;
+  position: relative;
   background-color: transparent;
+  overflow: hidden;
+  border-bottom: 5px solid #EDEFED;
 }
 
 .hero-heading {
   color: #FFF !important;
-  /*color: #FAEBFF !important; */
   font-size: 12em !important;
   text-shadow: 1px 1px 1px #080000;
   text-align: center;
@@ -37,23 +40,33 @@ body {
 }
 
 #video1 { 
- -webkit-transform: translateX(-50%) translateY(-50%);
-    -moz-transform: translateX(-50%) translateY(-50%);
-    -ms-transform: translateX(-50%) translateY(-50%);
-    -o-transform: translateX(-50%) translateY(-50%);
-    transform: translateX(-50%) translateY(-50%);
   position: absolute;
-  top: -2%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
   height: auto;
+  width: auto;
+  min-height: 100%;
+  min-width: 100%;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
   z-index: -100;
 }
 
 
 /*search bar*/
+.logo-left {
+  float: left;
+  font-size: 28px;
+  color: #2f4f4f;
+  margin: 5px -60px;
+}
+
+.logo-left:hover {
+  color: #FFAAAA;
+  transition: 1s;
+}
+
+
 
 .container {
   width: 85%;
@@ -62,15 +75,15 @@ body {
 #sticker {
   top: 375px;
   position: absolute;
-  z-index: 100;
   width: 100%;
   margin: -10px 0 0 0;
+  z-index: 100;
 }
 
 #sticker_results {
   top: 0;
   left: 0;
-  position: fixed;
+  position: static;
   z-index: 100;
   width: 100%;
 }
@@ -78,12 +91,22 @@ body {
 .search {
   background-color: rgba(0,0,0,0.5);
   height: 80px;
-  /*margin: 0 auto;*/
   display: block;
   position: absolute;
   width: 100%;
   padding: 1.5em 0 0 7.5em;
 }
+
+.search2 {
+  background-color: #FFFFFE;
+  box-shadow: 2px 2px #FFEFF7;
+  height: 80px;
+  display: block;
+  position: absolute;
+  width: 100%;
+  padding: 1.5em 0 0 7.5em;
+}
+
 
 .search-link a{
   text-decoration: none;
@@ -96,6 +119,8 @@ body {
 input {
   border-radius: 0% !important;
   height: 40px !important;
+  position: relative; 
+  z-index: 1;
 }
 
 .input-group-addon {
@@ -103,15 +128,23 @@ input {
 }
 
 #submit {
-  background-color: red;
+  background-color: #ff5a5f !important;
   border: none;
   border-radius: 0%;
   width: 8em;
   height: 40px;
+  position: relative; 
+  z-index: 1;
+}
+
+#submit:hover {
+  background-color: #FF5A6F !important;
+  transition: 1s;
 }
 
 .top_space {
   margin-top: 100px;
+
 }
 
 /*row*/
@@ -182,14 +215,25 @@ img:hover{
   width: 25%;
 }
 
-.ui-autocomplete { height: 250px; overflow-y: hidden; overflow-x: hidden;}
+.ui-autocomplete { 
+  height: auto; 
+  max-height: 200px;
+  overflow-y: hidden; 
+  overflow-x: hidden;}
 
 /*google map*/
 #wn2 {
-  top: 9px;
   height: 330px !important;
   display: block;
+  margin-top: 100px;
+  /*z-index: 1000;*/
+  position: relative;
   }
+
+.infowindow-markup {
+  z-index: 1000;
+  position: relative;
+}
 
 /*responsive layout*/
 
@@ -202,14 +246,73 @@ img:hover{
       text-align: center;
     }
 /*hide date bar on mobile*/
-    .no--padding {
-      display: none;
-    }
 
     img {
       height: 250px;
       width: 100%;
     }
 }
+
+/*WEATHER*/
+.weather div{
+  display: inline-block;
+  position: relative;
+}
+
+.avg-high {
+  color: red;
+}
+
+.avg-low {
+  color: blue;
+}
+
+.avg-precipitation {
+  color: #669999;
+}
+
+.avg-humidity {
+  color: #7A9F35;
+}
+
+table {
+  border-collapse: collapse;
+  border: none;
+  z-index: -10;
+}
+
+.weather-widget td{
+  font-size: 21px;
+}
+
+.when-to-visit {
+  text-align :left;
+}
+
+.when-to-visit-months {
+  text-align: left;
+}
+
+
+
+/*CITY*/
+
+.line-divider {
+  padding-top: 100px;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.city-info {
+}
+
+.city-info li {
+  list-style: none;
+  font-size: 16px;
+}
+
+
+
+
 
 

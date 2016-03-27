@@ -86,7 +86,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
             "infoBoxOptions": {}
         },
 
-        _markup: "<div class='infowindow-markup'><strong>{{name}}</strong>{{vicinity}}</div>",
+        _markup: "<div class='infowindow-markup'><strong>{{name}} </strong>{{vicinity}}</div>",
 
         //=====================================================================
         // _build : Private Function
