@@ -26,29 +26,55 @@ end
 
 desc 'Retrieves (scrapes) Weather Data from Wikipedia City pages and store in DB'
 task "fetch:wikipedia" do
-  if City.count > 0 && AverageHighTemperature.count == 0
+  if City.count > 0 && DailyMeanTemperature.count == 0
     list_of_cities_with_name_issues = Array.new
     cities = City.all
+    
     cities.each do |city|
-      puts city.name
+      
       wiki_page = "https://en.wikipedia.org/wiki/#{city.wiki_slug}"
       wiki_extract = Nokogiri::HTML(open(URI.encode(wiki_page)))
-      response = wiki_extract.css("div#mw-content-text > table.wikitable.collapsible > tr")[1]
-      puts wiki_extract.css("div#mw-content-text > table.wikitable.collapsible > tr")[1]
+      response = wiki_extract.css("div#mw-content-text > table.wikitable.collapsible > tr")[1] # check if table exists, chang this to check if the title includes the word 'Climate' to be precise!
+      
       unless response.is_a?(Nokogiri::XML::Element)
-        list_of_cities_with_name_issues << city.wiki_slug # add city to array resolve name issues after version ALPHA and fetch relevant data
+        list_of_cities_with_name_issues << city.wiki_slug # skip to next city if table doesn't exist and add city to array resolve name issues after version ALPHA and fetch relevant data
         next
       end
+      
       # extract the weather data and store in relevant tables: average_high_temperatures, average_low_temperatures, daily_mean_temperatures
+      # loop through table rows
+      wiki_table_rows = wiki_extract.css("div#mw-content-text > table.wikitable.collapsible > tr")
+        
+        wiki_table_rows.each do |row|
+          
+          # store average highs in degrees celcius
+          if row.css("th").text == "Average high °C (°F)"
+            row.css("td")[0..-2].each_with_index do |data_point, index|
+              AverageHighTemperature.create(cities_id:city.id, months_id: index+1, temperature: data_point.text[0..4])
+            end
+          end
+          
+          # store daily means in degrees celcius
+          if row.css("th").text == "Daily mean °C (°F)"
+            row.css("td")[0..-2].each_with_index do |data_point, index|
+              DailyMeanTemperature.create(cities_id:city.id, months_id: index+1, temperature: data_point.text[0..4])
+            end
+          end
+          
+          # store average lows in degrees celcius
+          if row.css("th").text == "Average low °C (°F)"
+            row.css("td")[0..-2].each_with_index do |data_point, index|
+              AverageLowTemperature.create(cities_id:city.id, months_id: index+1, temperature: data_point.text[0..4])
+            end
+          end
 
-    end
+        end
+
+      end
+      
   else
     puts "ERROR: The database seems to have some seed data in place.\nPlease run following rake tasks (in given order) before attempting to seed:\n\t'rake db:drop'\n\t'rake db:create'\n\t'rake db:migrate'\n\t'rake fetch:nomad_list'"
   end
-  # make tables for images(w/ source col), more temps (low, mean)
-  # yearly temp data
-  # doc = Nokogiri::HTML(open("https://en.wikipedia.org/wiki/Vancouver"))
-  # puts doc.css("div#mw-content-text > table.wikitable.collapsible > tr")[0] # ... > table)[1]
 end
 
 desc 'Fetch Nomad List data and store to database if empty'
