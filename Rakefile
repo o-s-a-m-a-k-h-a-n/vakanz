@@ -6,17 +6,14 @@ require ::File.expand_path('../config/environment', __FILE__)
 Rake::Task["db:create"].clear
 Rake::Task["db:drop"].clear
 
-# NOTE: Assumes SQLite3 DB <- changed to Postgres. Needs to be reviewed by TA
 desc "create the database"
 task "db:create" do
-  # touch 'db/db.sqlite3'
   conn = PG.connect(dbname:'postgres')
   puts "Database 'app_vakanz' CREATED successfully" if conn.exec('CREATE DATABASE app_vakanz')
 end
 
 desc "drop the database"
 task "db:drop" do
-  # rm_f 'db/db.sqlite3'
   conn = PG.connect(dbname:'postgres')
   puts "Database 'app_vakanz' DROPPED successfully" if conn.exec('DROP DATABASE app_vakanz')
 end
@@ -28,35 +25,25 @@ end
 
 
 desc 'Retrieves (scrapes) Weather Data from Wikipedia City pages and store in DB'
-task "fetch:weather" do
-  file = open("https://nomadlist.com/api/v2/list/cities").read
-  data_hash = JSON.parse(file)
-  no_data_counter = 0
-  index = 0
-  no_data = Array.new
-  data_hash['result'].each do |city|
-    puts "---------------------------------"
-    puts
-    city_name = city['info']['city']['name']
-    if city_name == 'Kinosaki-Onsen'
-      next
+task "fetch:wikipedia" do
+  if City.count > 0 && AverageHighTemperature.count == 0
+    list_of_cities_with_name_issues = Array.new
+    cities = City.all
+    cities.each do |city|
+      puts city.name
+      wiki_page = "https://en.wikipedia.org/wiki/#{city.wiki_slug}"
+      wiki_extract = Nokogiri::HTML(open(URI.encode(wiki_page)))
+      response = wiki_extract.css("div#mw-content-text > table.wikitable.collapsible > tr")[1]
+      puts wiki_extract.css("div#mw-content-text > table.wikitable.collapsible > tr")[1]
+      unless response.is_a?(Nokogiri::XML::Element)
+        list_of_cities_with_name_issues << city.wiki_slug # resolve name issues after version ALPHA and fetch relevant data
+        next
+      end
+      # extract the weather data and store in relevant tables: average_high_temperatures, average_low_temperatures, daily_mean_temperatures
+
     end
-    if city_name == 'Krivoy-Rog'
-      city_name = 'Kryvyi Rih'
-    end
-    city_name.gsub!(/\s/,"_")
-    puts city_name
-    doc = Nokogiri::HTML(open(URI.encode("https://en.wikipedia.org/wiki/#{city_name}")))
-    response = doc.css("div#mw-content-text > table.wikitable.collapsible > tr")[1]
-    puts doc.css("div#mw-content-text > table.wikitable.collapsible > tr")[1]
-    unless response.is_a?(Nokogiri::XML::Element)
-      no_data_counter += 1
-      no_data << city_name
-    end
-    index+=1
-    puts
-    puts "Current city: #{index}"
-    puts "Cities with no data: #{no_data_counter}"
+  else
+    puts "ERROR: The database seems to have some seed data in place.\nPlease run following rake tasks (in given order) before attempting to seed:\n\t'rake db:drop'\n\t'rake db:create'\n\t'rake db:migrate'\n\t'rake fetch:nomad_list'"
   end
   # make tables for images(w/ source col), more temps (low, mean)
   # yearly temp data
@@ -87,7 +74,13 @@ task "fetch:nomad_list" do
       country = city['info']['country']['name']
       region = city['info']['region']['name']
       internet_download_speed = city['info']['internet']['speed']['download']
-      wiki_slug = name.gsub(/\s/,"_")
+      if name == 'Kinosaki-Onsen'
+        wiki_slug = 'Kinosaki,_Hyōgo'
+      elsif name == 'Krivoy-Rog'
+        wiki_slug = 'Kryvyi Rih'
+      else
+        wiki_slug = name.gsub(/\s/,"_")
+      end
       flickr_tag = name.gsub(/\s/,"+")
       airbnb_median = city['cost']['airbnb_median']['USD']
       airbnb_vs_apartment_price_ratio = city['cost']['airbnb_vs_apartment_price_ratio']
