@@ -116,9 +116,9 @@ end
 
 desc 'Get first page of Flickr Images response by City tag and store full hyperlink in database'
 task "fetch:flickr" do
-if City.count > 0
-    city = City.first  
-    # cities.each do |city|
+if City.count > 0 && Photo.count == 0
+    cities = City.all 
+    cities.each do |city|
       city_name = city.flickr_tag
       flickr_api_key = ENV['FLICKR_AUTH_KEY']
       link = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=#{flickr_api_key}&tags=#{city_name}&format=json&nojsoncallback=1"
@@ -126,11 +126,18 @@ if City.count > 0
       # this should have been dealt with when making 'flickr_tag'. TODO: edit fetch:nomad_list to clean flickr_tag
       encoded_link = URI.encode(link)
       flickr_data_for_city = JSON.parse(open(URI.parse(encoded_link)).read)
-
-
-      puts "#{city_name}: #{flickr_data_for_city['photos']['photo']}"
-      # TODO: create migration to remove all columns and store full flickr image url to db from task
-    # end
+      if flickr_data_for_city['photos']['total'].to_i > 0
+        flickr_data_for_city['photos']['photo'].each do |photo|
+          farm = photo['farm']
+          server = photo['server']
+          id = photo['id']
+          secret = photo['secret']
+          image_link = "https://farm#{farm}.staticflickr.com/#{server}/#{id}_#{secret}.jpg"
+          title = photo['title']
+          Photo.create(cities_id: city.id, title: title, link: image_link)
+        end
+      end
+    end
   else
     puts "ERROR: The database seems to have some seed data in place.\nPlease run following rake tasks (in given order) before attempting to seed:\n\t'rake db:drop'\n\t'rake db:create'\n\t'rake db:migrate'\n\t'rake fetch:nomad_list'"
   end
