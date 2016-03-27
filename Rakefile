@@ -36,7 +36,7 @@ task "fetch:wikipedia" do
       response = wiki_extract.css("div#mw-content-text > table.wikitable.collapsible > tr")[1]
       puts wiki_extract.css("div#mw-content-text > table.wikitable.collapsible > tr")[1]
       unless response.is_a?(Nokogiri::XML::Element)
-        list_of_cities_with_name_issues << city.wiki_slug # resolve name issues after version ALPHA and fetch relevant data
+        list_of_cities_with_name_issues << city.wiki_slug # add city to array resolve name issues after version ALPHA and fetch relevant data
         next
       end
       # extract the weather data and store in relevant tables: average_high_temperatures, average_low_temperatures, daily_mean_temperatures

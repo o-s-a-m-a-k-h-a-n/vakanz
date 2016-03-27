@@ -11,12 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326221841) do
+ActiveRecord::Schema.define(version: 20160327191617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "average_high_temperatures", force: :cascade do |t|
+    t.integer  "cities_id"
+    t.integer  "months_id"
+    t.decimal  "temperature"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "average_low_temperatures", force: :cascade do |t|
     t.integer  "cities_id"
     t.integer  "months_id"
     t.decimal  "temperature"
@@ -46,6 +54,14 @@ ActiveRecord::Schema.define(version: 20160326221841) do
     t.decimal  "coffee_in_cafe"
     t.decimal  "hotel"
     t.decimal  "non_alcoholic_drink_in_cafe"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "daily_mean_temperatures", force: :cascade do |t|
+    t.integer  "cities_id"
+    t.integer  "months_id"
+    t.decimal  "temperature"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
