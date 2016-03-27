@@ -13,13 +13,13 @@ body {
 .jumbotron {
   z-index:-101;
   height: 450px;
-  margin: 0 auto;
+  margin: 0 auto !important;
   background-color: transparent;
+  overflow: hidden;
 }
 
 .hero-heading {
   color: #FFF !important;
-  /*color: #FAEBFF !important; */
   font-size: 12em !important;
   text-shadow: 1px 1px 1px #080000;
   text-align: center;
@@ -45,10 +45,8 @@ body {
   position: absolute;
   top: -2%;
   left: 50%;
-  min-width: 100%;
-  min-height: 100%;
   width: auto;
-  height: auto;
+  height: 100%;
   z-index: -100;
 }
 
@@ -70,7 +68,7 @@ body {
 #sticker_results {
   top: 0;
   left: 0;
-  position: fixed;
+  position: static;
   z-index: 100;
   width: 100%;
 }
@@ -212,4 +210,35 @@ img:hover{
     }
 }
 
+/*WEATHER*/
+.weather div{
+  display: inline-block;
+}
 
+.avg-high {
+  color: red;
+}
+
+.avg-low {
+  color: blue;
+}
+
+table {
+  border-collapse: collapse;
+  border: none;
+}
+
+/*CITY*/
+
+.line-divider {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.city-info {
+}
+
+.city-info li {
+  list-style: none;
+  font-size: 16px;
+}

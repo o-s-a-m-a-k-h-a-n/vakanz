@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
-var address= "San Francisco"
+var address= "San Francisco";
 
  $("#wn2").whatsnearby({ 
-     zoom:13,
+     zoom:10,
      width:"99%",
      address: address,
      placesRadius: 10000,
@@ -13,10 +13,10 @@ var address= "San Francisco"
 
 
   function pressSearchButton(e){
-    var address = document.getElementById('location').value
+    var address = document.getElementById('location').value;
     document.getElementById('result_search').innerHTML = address;
     $("#wn2").whatsnearby({ 
-     zoom:15,
+     zoom:12,
      width:"99%",
      address: address,
      placesRadius: 10000,

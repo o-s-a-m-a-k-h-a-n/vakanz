@@ -8,7 +8,7 @@
   <meta content="width=device-width, initial-scale=1" name="viewport">
   
 <!-- links -->
-
+  <link rel="stylesheet" href="stylesheets/weather-icons.min.css">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
 <!-- Latest compiled and minified CSS -->
   <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" rel="stylesheet">
@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link href="/stylesheets/application.css" rel="stylesheet">
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-  
+
 <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 
 
@@ -111,24 +111,136 @@
     </div>
   </div>
 
+
+
+
+
+
   <div class="container">
     <div class="row">
-      <div class="col-md-4 no-padding">
-        <a href="#"><img src=" http://placehold.it/140x100" alt="weather_info"></a>    
+      <div class="col-md-6 col-sm-12 col-xs-12 no-padding">
+            <div class="weather">
+             <div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>JAN</th>
+        <th>FEB</th>
+        <th>MAR</th>
+        <th>APR</th>
+        <th>MAY</th>
+        <th>JUN</th>
+        <th>JUL</th>
+        <th>AUG</th>
+        <th>SEP</th>
+        <th>OCT</th>
+        <th>NOV</th>
+        <th>DEC</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      <td><i class="wi wi-day-sunny"></i></td>
+      <td><i class="wi wi-day-cloudy"></i></td>
+      <td><i class="wi wi-day-rain"></i></td>
+      <td><i class="wi wi-day-cloudy-high"></i></td>
+      <td><i class="wi wi-day-thunderstorm"></i></td>
+      <td><i class="wi wi-day-showers"></i></td>
+      <td><i class="wi wi-day-rain-mix"></i></td>
+      <td><i class="wi wi-day-haze"></i></td>
+      <td><i class="wi wi-day-lightning"></i></td>
+      <td><i class="wi wi-day-sleet"></i></td>
+      <td><i class="wi wi-day-sunny"></i></td>
+      <td><i class="wi wi-day-fog"></i></td>
+      
+      </tr>
+      <tr>
+        <td class="avg-high">10&deg;</td>
+        <td class="avg-high">15&deg;</td>
+        <td class="avg-high">25&deg;</td>
+        <td class="avg-high">35&deg;</td>
+        <td class="avg-high">20&deg;</td>
+        <td class="avg-high">10&deg;</td>
+        <td class="avg-high">10&deg;</td>
+        <td class="avg-high">15&deg;</td>
+        <td class="avg-high">25&deg;</td>
+        <td class="avg-high">35&deg;</td>
+        <td class="avg-high">20&deg;</td>
+        <td class="avg-high">10&deg;</td>
+      </tr>
+      <tr class="line">
+      <td class="avg-low">8&deg;</td>
+        <td class="avg-low">1&deg;</td>
+        <td class="avg-low">20&deg;</td>
+        <td class="avg-low">3&deg;</td>
+        <td class="avg-low">2&deg;</td>
+        <td class="avg-low">10&deg;</td>
+        <td class="avg-low">10&deg;</td>
+        <td class="avg-low">15&deg;</td>
+        <td class="avg-low">25&deg;</td>
+        <td class="avg-low">35&deg;</td>
+        <td class="avg-low">20&deg;</td>
+        <td class="avg-low">10&deg;</td>
+    </tbody>
+  </table>
+  </div>
+            </div>
+
       </div>
-      <div class="col-md-8 col-sm-6 col-xs-12 no-padding">
+      <div class="col-md-6 col-sm-12 col-xs-12 no-padding">
         <div id="wn2"></div> <!-- google map -->
       </div>
     </div>
   </div>
    <br>
-    
+
+   <br>
+    <hr class="line-divider">
+    <br>
   <div class="container">
-    <div class="row">
-      <a href="#"><img src=" http://placehold.it/350x150" alt="weather_info"></a>
-    </div>
+    <div class="city-info">
+      <div class="row">
+          <div class="col-md-4 col-sm-6 col xs-12 no-padding">
+           <ul>
+           <li>Flight From You: <span class="pull-right" id="flight-from-you">$100</span> </li>
+           
+            <li><i class="fa fa-glass"></i>
+Night life: </li>
+            <li><i class="fa fa-wifi"></i>
+Free Wifi: </li>
+            <li><i class="fa fa-desktop"></i>
+Internet Speed: </li>
+            </ul>
+          </div>
+
+
+          <div class="col-md-4 col-sm-6 col xs-12 no-padding">
+          <ul>
+            <li><i class="fa fa-bed"></i>
+Hotel Cost:</li> 
+            <li><i class="fa fa-beer"></i>
+Beer Cost:</li>
+            <li><i class="fa fa-coffee"></i>
+Coffee Cost:</li>       
+            </ul>
+          </div>
+
+
+          <div class="col-md-4 col-sm-6 col xs-12 no-padding">
+                <ul>
+            <li><i class="fa fa-plane"></i>
+Sky Scanner:</li>
+            <li><i class="fa fa-suitcase"></i>
+ When to Visit: </li>
+             <li><i class="fa fa-map-marker"></i>
+Walk Score: </li>      
+            </ul>
+          </div>
+        </div>
+      </div>
   </div>
     <br>
+    <hr class="line-divider">
 
     <div class="container">
       <div class="row">
