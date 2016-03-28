@@ -16,7 +16,7 @@ $(document).ready(function(){
     var address = document.getElementById('location').value;
     document.getElementById('result_search').innerHTML = address;
     $("#wn2").whatsnearby({ 
-     zoom:12,
+     zoom:13,
      width:"%",
      address: address,
      placesRadius: 10000,

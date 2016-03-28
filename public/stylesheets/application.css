@@ -117,7 +117,7 @@ body {
 
 .search2 {
   background-color: #FFFFFE;
-  box-shadow: 2px 2px #FFEFF7;
+  box-shadow: 2px 2px #EFEFEF;
   height: 80px;
   display: block;
   position: absolute;
@@ -183,7 +183,7 @@ font-weight: 600;
 .top-cities-sub{
   color: #565A5C;
   font-weight: 900;
-  font-size: 14px;
+  font-size: 24px;
   text-align: center;
 }
 
@@ -299,7 +299,7 @@ img:hover{
 h2 {
   position: absolute;
   top: 140px;
-  left: 160px;
+  left: 180px;
   width: 100%; 
   text-shadow: 0.5px 0.5px 0 #000
 }
@@ -334,7 +334,7 @@ h2 span.rio {
 h2 span.large_img {
   position: absolute;
   width: 100%;
-  left: 220px;
+  left: 270px;
   font-size: 50px;
   color: white;
   font: bold;
@@ -369,8 +369,14 @@ table {
   border: none;
   z-index: -10;
   margin: 0 auto;
+  font-family: 'GeosansLight', sans-serif, 'Helvetica Neue';
+  font-weight: 600;
+  font-size: 19px;
+}
 
-
+table th {
+  font-weight: 900;
+  font-family: 'Neou-Bold', sans-serif;
 }
 
 .weather-widget td{
@@ -387,7 +393,9 @@ table {
 }
 
 #months {
-  font-size: 16px;
+  font-size: 18px;
+  font-family: 'GeosansLight', sans-serif, 'Helvetica Neue';
+  font-weight: 600;
 }
 
 
@@ -401,7 +409,9 @@ table {
 
 .city-info li {
   list-style: none;
-  font-size: 16px;
+  font-size: 18px;
+  font-family: 'GeosansLight', sans-serif, 'Helvetica Neue';
+  font-weight: 600;
 }
 
 .city-info ul {
@@ -409,7 +419,7 @@ table {
 }
 
 .side-header {
-  font-size: 14px;
+  font-size: 17px;
 }
 
 .city-pad {
@@ -417,7 +427,7 @@ table {
 }
 
 .flickr-set {
-  height: 300px;
+  height: 250px;
   width: 100%;
 }
 
