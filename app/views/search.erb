@@ -48,14 +48,15 @@
     <div class="search2">
                <a href="/"><h4 class="logo-left"> <span><i class="fa fa-viacoin"></i></span>akanz</h4></a>
       <div class="container">
+
         <div class="row">
 
-          <div class="col-md-10 col-md-offset-1">
+          <div class="col-md-11 col-md-offset-1">
 
             <div class="form-section">
               <div class="row">
                 <form role="form" action="/search" method="GET">
-                  <div class="col-md-8 col-sm-6 col-xs-8 col-md-offset-3 no-padding">
+                  <div class="col-md-8 col-sm-6 col-xs-8 col-md-offset-2 no-padding">
 
                     <div class="form-group">
 
@@ -86,20 +87,21 @@
   </div>
 </header>
 
-   <br>
- 
-  <div class="container">
-    <div class="row">
-     <div class="col-md-5 col-sm-12 col-xs-12 no-padding">
-        <div id="wn2"></div>  <!-- google map -->
-      </div>
-      <div class="col-md-7 col-sm-12 col-xs-12 ">
-      <div class="top_space">
+   <br><div class="container">
+
+ <div class="top_space">
       <h2><span id="result_search"><%= @searched_city %></span></h2>
     </div>
+  <div class="container">
+    <div class="row">
+     <div class="col-md-12 col-sm-12 col-xs-12 no-padding">
+        <div id="wn2"></div>  <!-- google map -->
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12 ">
+      
             <div class="weather">
-             <div class="table-responsive">          
-  <table class="table">
+             <div class="table">          
+  <table class="table text-justify">
     <thead>
 
       <tr>
@@ -186,13 +188,15 @@
 
     </tbody>
   </table>
-
+  
+  <hr>
+ <div class="container">
   <span>
 
     <% if @city.ideal_months.present? %>
-    <h4 class="when-to-visit"><i class="fa fa-suitcase"></i> Best Months to Visit:</h4>
+    <h5 class="when-to-visit"><i class="fa fa-suitcase"></i> Best Months to Visit:</h5>
     <p class="when-to-visit-months">
-      <span>
+      <span id="months">
         <% @city.ideal_months.each do |month| %>
           <%= month.month_id %>&nbsp;
         <% end %>
@@ -201,7 +205,7 @@
     <% end %>
   </span>
   
-  <hr>
+
   
   </div>
   
@@ -210,16 +214,14 @@
    
     </div>
   </div>
-   <br>
-
-   <br>
+ 
     
-  <div class="container">
-    <div class="city-info">
+ 
+    <div class="city-info text-justify col-md-12 col-sm-12 col-xs-12">
       <div class="row">
-          <div class="col-md-4 col-sm-6 col xs-12 no-padding">
+          <div class="col-md-4 col-sm-6 col xs-12 city-pad">
            <ul>
-           <li><i class="fa fa-plane"></i> Flights From You: <span class="pull-right" id="flight-from-you"><a href="http://www.skyscanner.ca/">LOGO</a></span> </li>
+           <li><i class="fa fa-plane"></i> Flights From You: <span class="pull-right" id="flight-from-you"><a href="http://www.skyscanner.ca/">Sky Scanner</a></span> </li>
             <li><i class="fa fa-bed"></i>
 Hotel Cost: <span class="pull-right">$ <%= sprintf("%.2f", @city.costs.first.hotel) %><small>/day</small></span></li> 
             <li><i class="fa fa-home"></i> Airbnb Apartment: <span class="pull-right">$ <%= sprintf("%.2f", @city.costs.first.airbnb_median) %><small>/night</small></span></li>
@@ -227,7 +229,7 @@ Hotel Cost: <span class="pull-right">$ <%= sprintf("%.2f", @city.costs.first.hot
           </div>
 
 
-          <div class="col-md-4 col-sm-6 col xs-12 no-padding">
+          <div class="col-md-4 col-sm-6 col xs-12 city-pad">
           <ul>
             <li><i class="fa fa-beer"></i>  Beer (0.5L): <span class="pull-right">$ <%= sprintf("%.2f", @city.costs.first.beer_in_cafe) %></span></li> 
             <li><i class="fa fa-coffee"></i>
@@ -237,7 +239,7 @@ Cappuccino: <span class="pull-right">$ <%= sprintf("%.2f", @city.costs.first.cof
           </div>
 
 
-          <div class="col-md-4 col-sm-6 col xs-12 no-padding">
+          <div class="col-md-4 col-sm-6 col xs-12 city-pad">
                 <ul>
                  <li><i class="fa fa-desktop"></i>
 Internet Speed: <span class="pull-right"><%= sprintf("%.2f", @city.internet_download_speed) %><small>/MBPS</small></span></li>
@@ -252,13 +254,12 @@ Nightlife: <span class="pull-right"><%= @city.scores.first.nightlife < 0.5 ? "Du
         </div>
       </div>
   </div>
-    <br>
-    <hr class="line-divider">
 
     <div class="container">
+    <hr>
       <div class="row">
         <% @city.photos.each do |photo| %>        
-        <div class="col-md-4 col-sm-6 col xs-12 no-padding">
+        <div class="col-md-4 col-sm-6 col xs-12 city-pad">
           <a href="#"><img src="<%= photo.link %>" alt=""></a>
         </div>
         <% end %>
