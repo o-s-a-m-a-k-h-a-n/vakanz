@@ -12,7 +12,7 @@ $(document).ready(function(){
    });
 
 
-  function pressSearchButton(e){
+  function pressSearchButton(){
     var address = document.getElementById('location').value;
     document.getElementById('result_search').innerHTML = address;
     $("#wn2").whatsnearby({ 
@@ -25,9 +25,9 @@ $(document).ready(function(){
    });
    
    // google.maps.event.trigger($("#wn2").whatsnearby().map(), 'resize');
-    if (e) {
-      e.preventDefault();
-    }
+    // if (e) {
+    //   e.preventDefault();
+    // }
   }
 
   $('#submit').click(pressSearchButton);

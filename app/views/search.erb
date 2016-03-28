@@ -54,14 +54,14 @@
 
             <div class="form-section">
               <div class="row">
-                             <form role="form" action="/search">
+                <form role="form" action="/search" method="GET">
                   <div class="col-md-8 col-sm-6 col-xs-8 col-md-offset-3 no-padding">
 
                     <div class="form-group">
 
                       <div class="ui-widget">
                         <label class="sr-only" for="location">Location</label>
-                        <input class="form-control" id="location" 
+                        <input class="form-control" id="location" name="location" 
                           placeholder= "Where would you like to go?" 
                           type="text"
                           <%= params[:location] && !params[:location].empty? ?
@@ -118,11 +118,13 @@
 
     <tbody>
 
+      <% if @city.daily_mean_temperatures.present? %>
       <tr>
         <% 12.times.each do |index| %>
-          <td class="avg-mean"><%= @city.daily_mean_temperatures.where(month_id:index+1).first.temperature ? "#{@city.daily_mean_temperatures.where(month_id:index+1).first.temperature}&deg;" : "n/a" %></td>
+          <td class="avg-mean"><%= @city.daily_mean_temperatures.where(month_id:index+1).first.temperature %>&deg;</td>
           <% end %>
       </tr>
+      <% end %>
 
       <tr class="weather-widget">
         <td><i class="wi wi-day-sunny"></i></td>
@@ -139,22 +141,44 @@
         <td><i class="wi wi-day-fog"></i></td>
       </tr>
 
+      <% if @city.average_high_temperatures.present?  %>
       <tr>
         <% 12.times.each do |index| %>
-          <td class="avg-high"><%= @city.average_high_temperatures.where(month_id:index+1).first.temperature ? "#{@city.average_high_temperatures.where(month_id:index+1).first.temperature}&deg;" : "n/a" %></td>
+          <td class="avg-high"><%= @city.average_high_temperatures.where(month_id:index+1).first.temperature %>&deg;</td>
         <% end %>
       </tr>
+      <% end %>
     
+      <% if @city.average_low_temperatures.present?  %>
       <tr>
       <% 12.times.each do |index| %>
         <td class="avg-low"><%= @city.average_low_temperatures.where(month_id:index+1).first.temperature %>&deg;</td>
         <% end %>
       </tr>
+      <% end %>
+
+      <% if @city.average_relative_humidities.present? %>
+      <tr>
+        <% 12.times.each do |index| %>
+          <td class="avg-humidity"><%= @city.average_relative_humidities.where(month_id:index+1).first.percent %> %</td>
+          <% end %>
+      </tr>
+      <% end %>
+
+      <% if @city.average_rainy_days.present? %>
+      <tr>
+        <% 12.times.each do |index| %>
+          <td class="avg-precipitation"><%= @city.average_rainy_days.where(month_id:index+1).first.count %></td>
+        <% end %>
+      </tr>
+      <% end %>
 
     </tbody>
   </table>
 
   <span>
+
+    <% if @city.ideal_months.present? %>
     <h4 class="when-to-visit"><i class="fa fa-suitcase"></i> Best Months to Visit:</h4>
     <p class="when-to-visit-months">
       <span>
@@ -163,6 +187,7 @@
         <% end %>
       </span>
     </p>
+    <% end %>
   </span>
   
   <hr>
@@ -188,24 +213,17 @@
            <li><i class="fa fa-plane"></i> Flights From You: <span class="pull-right" id="flight-from-you"><a href="http://www.skyscanner.ca/">LOGO</a></span> </li>
             <li><i class="fa fa-bed"></i>
 Hotel Cost: <span class="pull-right">$ <%= sprintf("%.2f", @city.costs.first.hotel) %><small>/day</small></span></li> 
-            <li><i class="fa fa-home"></i> Airbnb Apartment: <span class="pull-right">$ <%= sprintf("%.2f", @city.costs.first.airbnb_median) %><small>/d</small></span></li>
-            <li><i class="fa fa-map-marker"></i>
-Walk Score: <span class="pull-right">10</span></li>
-            
-            
-           
+            <li><i class="fa fa-home"></i> Airbnb Apartment: <span class="pull-right">$ <%= sprintf("%.2f", @city.costs.first.airbnb_median) %><small>/night</small></span></li>
             </ul>
           </div>
 
 
           <div class="col-md-4 col-sm-6 col xs-12 no-padding">
           <ul>
-           <li><i class="fa fa-cutlery"></i> Cost of Meal: <span class="pull-right">$10</span></li>
-            <li><i class="fa fa-beer"></i>
-Pint of Beer (0.5l): <span class="pull-right">$1</span></li>
+            <li><i class="fa fa-beer"></i>  Beer (0.5L): <span class="pull-right">$ <%= sprintf("%.2f", @city.costs.first.beer_in_cafe) %></span></li> 
             <li><i class="fa fa-coffee"></i>
-cappuccino: <span class="pull-right">$2</span></li> 
-            <li><i class="fa fa-glass"></i> Coca-Cola (0.5L): <span class="pull-right">$1.50</span></li>      
+Cappuccino: <span class="pull-right">$ <%= sprintf("%.2f", @city.costs.first.coffee_in_cafe) %></span></li> 
+            <li><i class="fa fa-glass"></i> Coca-Cola (0.3L): <span class="pull-right">$ <%= sprintf("%.2f", @city.costs.first.non_alcoholic_drink_in_cafe) %></span></li>      
             </ul>
           </div>
 
@@ -213,11 +231,11 @@ cappuccino: <span class="pull-right">$2</span></li>
           <div class="col-md-4 col-sm-6 col xs-12 no-padding">
                 <ul>
                  <li><i class="fa fa-desktop"></i>
-Internet Speed: <span class="pull-right">350 <small>/mbs</small></span></li>
+Internet Speed: <span class="pull-right"><%= sprintf("%.2f", @city.internet_download_speed) %><small>/MBPS</small></span></li>
                 <li><i class="fa fa-wifi"></i>
-                Free Wifi: <span class="pull-right">Yes</span></li>
+                Wifi Availability: <span class="pull-right"><%= @city.scores.first.free_wifi_available < 0.5 ? "Bad" : "Good" %></span></li>
            <li><i class="fa fa-glass"></i>
-Night life: <span class="pull-right">8.0</span></li>
+Nightlife: <span class="pull-right"><%= @city.scores.first.nightlife < 0.5 ? "Dull" : "Exciting" %></span></li>
 
                    
             </ul>
@@ -230,17 +248,11 @@ Night life: <span class="pull-right">8.0</span></li>
 
     <div class="container">
       <div class="row">
+        <% @city.photos.each do |photo| %>        
         <div class="col-md-4 col-sm-6 col xs-12 no-padding">
-          <a href="#"><img src="http://f.tqn.com/y/gocalifornia/1/W/3/u/3/12168311036_11fb76416b_o.jpg" alt=""></a>
+          <a href="#"><img src="<%= photo.link %>" alt=""></a>
         </div>
-
-        <div class="col-md-4 col-sm-6 col xs-12 no-padding">
-          <a href="#"><img src="https://farm3.staticflickr.com/2157/2636271861_199d4ae1a3_z.jpg?zz=1" alt=""></a>
-        </div>
-       
-        <div class="col-md-4 col-sm-6 col xs-12 no-padding">
-          <a href="#"><img src="https://c2.staticflickr.com/2/1434/5105070107_91bd369b01_b.jpg" alt=""></a>
-        </div>
+        <% end %>
        </div>
       </div>
     </div>
