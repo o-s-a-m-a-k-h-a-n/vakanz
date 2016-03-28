@@ -1,7 +1,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: 'GeosansLight', sans-serif, 'Helvetica Neue';
 }
 
 body {
@@ -19,21 +19,24 @@ body {
 
 .hero-heading {
   color: #FFF !important;
-  /*color: #FAEBFF !important; */
-  font-size: 12em !important;
+  font-size: 11em !important;
   text-shadow: 1px 1px 1px #080000;
   text-align: center;
   display: block;
-  font-family: 'Exo 2', sans-serif;
+  font-family: 'Neou-Bold', sans-serif;
 }
 
 .hero-sub {
-  font-family: 'Pacifico', cursive;
+  font-family: 'Neou-Thin', sans-serif;
   color: #fff;
   text-align: center;
   display: block;
   font-size: 1.5em;
   text-shadow: 1px 1px 1px black;
+}
+
+.fa fa-viacoin{
+  font-size: 11em;
 }
 
 #video1 { 
@@ -103,7 +106,9 @@ input {
 }
 
 #submit {
-  background-color: red;
+  font-family: 'GeosansLight', sans-serif, 'Helvetica Neue';
+  font-size: 1.25em;
+  background-color: #ff6d00;
   border: none;
   border-radius: 0%;
   width: 8em;
@@ -126,7 +131,7 @@ input {
 .top-cities-sub{
   color: #565A5C;
   font-weight: 900;
-  font-size: 14px;
+  font-size: 24px;
   text-align: center;
 }
 
@@ -153,7 +158,8 @@ img:hover{
   background:url('/images/footer.png');
 }
 
-.footer h4{
+.footer h4 {
+  font-family: 'Neou-Bold', sans-serif;
   color: #fff !important;
   text-align: center;
   font-size: 15px;
@@ -182,34 +188,129 @@ img:hover{
   width: 25%;
 }
 
-.ui-autocomplete { height: 250px; overflow-y: hidden; overflow-x: hidden;}
+.ui-autocomplete { 
+  height: 250px; 
+  overflow-y: hidden; 
+  overflow-x: hidden;
+}
+
+#location {
+  font-family: 'GeosansLight', sans-serif, 'Helvetica Neue';
+  font-size: 1.25em;
+}
 
 /*google map*/
 #wn2 {
   top: 9px;
   height: 330px !important;
   display: block;
-  }
+}
+
+.img_flickr {
+  padding-top: 0px;
+  padding-bottom: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 100%;
+  height: auto;
+}
+
+.carousel-control.left, .carousel-control.right {
+  background: none !important;
+  filter: progid: none !important;
+  outline: 0;
+}
+
+#carousel_container {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.carousel-control {
+  width: 5%;
+}
+
+.img_cities {
+  padding: 8px;
+  width: 100%;
+  position: relative;
+  height: 350px !important;
+}
+
+h2 {
+  position: absolute;
+  top: 140px;
+  left: 160px;
+  width: 100%; 
+  text-shadow: 0.5px 0.5px 0 #000
+}
+
+h2 span {
+  color: white;
+  font: bold;
+  font-size: 50px;
+  padding: 10px;
+}
+
+h2 span.long_text {
+  position: absolute;
+  width: 100%;
+  left: -35px;
+  font-size: 50px;
+  color: white;
+  font: bold;
+  padding: 10px;
+}
+
+h2 span.rio {
+  position: absolute;
+  width: 100%;
+  left: -55px;
+  font-size: 50px;
+  color: white;
+  font: bold;
+  padding: 10px;
+}
+
+h2 span.large_img {
+  position: absolute;
+  width: 100%;
+  left: 220px;
+  font-size: 50px;
+  color: white;
+  font: bold;
+  padding: 10px;
+}
 
 /*responsive layout*/
 
-@media screen and (max-width: 480px) {
-    .hero-heading {
-      font-size: 5em !important;
-    }
-    input {
-      display: hidden !important;
-      text-align: center;
-    }
-/*hide date bar on mobile*/
-    .no--padding {
-      display: none;
-    }
+@media screen and (max-width: 1000px) {
+  h2 span{
+    position: relative;
+  }
+}
 
-    img {
-      height: 250px;
-      width: 100%;
-    }
+@media screen and (max-width: 480px) {
+  .hero-heading {
+    font-size: 5em !important;
+  }
+  input {
+    display: hidden !important;
+    text-align: center;
+  }
+/*hide date bar on mobile*/
+  .no--padding {
+    display: none;
+  }
+
+  img {
+    height: 250px;
+    width: 100%;
+  }
+
+  h2 span{
+    position: relative;
+  }
 }
 
 

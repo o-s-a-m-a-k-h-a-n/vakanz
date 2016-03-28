@@ -8,34 +8,33 @@
   <meta content="width=device-width, initial-scale=1" name="viewport">
   
 <!-- links -->
-
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+  
 <!-- Latest compiled and minified CSS -->
   <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" rel="stylesheet">
+  <link href="/stylesheets/application.css" rel="stylesheet">
   <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-  <link href="/stylesheets/application.css" rel="stylesheet">
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-  
-<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 
-
-  
 <!-- scripts -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  <script src="/javascript/carousel.js" type="text/javascript"></script>
   <script src="/javascript/es5-shim.min.js" type="text/javascript"></script>
   <script src="/javascript/es5-sham.min.js" type="text/javascript"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="/javascript/application.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
   <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
   <script src="/javascript/autocomplete.js" type="text/javascript"></script>
   <script src="/javascript/WhatsNearby.js" type="text/javascript"></script>
   <script src="/javascript/googleMap.js" type="text/javascript"></script>
-
+  <script src="/javascript/application.js" type="text/javascript"></script>
+  
   <title>
-    Vakanz Results Page <!-- SEO title -->
+    Vakanz Search Results Page <!-- SEO title -->
   </title>
 </head>
 
@@ -65,29 +64,6 @@
                       </div>
                     </div>
                   </div>
-
-                  <div class="col-md-3 col-sm-3 col-xs-3 no-padding">
-                    <div class="form-group">
-                      <label class="sr-only" for="checkin">Start date</label>
-                      <div class="input-group">
-                        <input class="form-control" id="datepicker" placeholder=
-                        "Start date" type="text"> <span class=
-                        "input-group-addon"><i class=
-                        "glyphicon glyphicon-calendar"></i></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3 col-sm-3 col-xs-3 no-padding">
-                    <div class="form-group">
-                      <label class="sr-only" for="checkout">End date</label>
-                      <div class="input-group">
-                        <input class="form-control" id="checkout" placeholder=
-                        "End date" type="text"> <span class=
-                        "input-group-addon"><i class=
-                        "glyphicon glyphicon-calendar"></i></span>
-                      </div>
-                    </div>
-                  </div>
                   <div class="col-md-3 col-sm-3 col-xs-1">
                     <button class="btn btn-default btn-primary" id="submit"
                     type="submit">Search</button>
@@ -103,7 +79,6 @@
 </header>
 
    <br>
-
 
   <div class="container">
     <div class="top_space">
@@ -130,36 +105,88 @@
   </div>
     <br>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 col-sm-6 col xs-12 no-padding">
-          <a href="#"><img src="http://f.tqn.com/y/gocalifornia/1/W/3/u/3/12168311036_11fb76416b_o.jpg" alt=""></a>
-        </div>
-
-        <div class="col-md-4 col-sm-6 col xs-12 no-padding">
-          <a href="#"><img src="https://farm3.staticflickr.com/2157/2636271861_199d4ae1a3_z.jpg?zz=1" alt=""></a>
+    <div id="carousel_container" class="container">
+      <div id="flickrCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#flickrCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#flickrCarousel" data-slide-to="1"></li>
+          <li data-target="#flickrCarousel" data-slide-to="2"></li>
+          <li data-target="#flickrCarousel" data-slide-to="3"></li>
+        </ol>
+       
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <div class="row">
+              <div class="col-md-4 col-sm-6 col xs-12">
+                <a href="#"><img src="https://c2.staticflickr.com/2/1434/5105070107_91bd369b01_b.jpg" alt="" class="img_flickr"></a>
+              </div>
+              <div class="col-md-4 col-sm-6 col xs-12">
+                <a href="#"><img src="https://c2.staticflickr.com/2/1434/5105070107_91bd369b01_b.jpg" alt="" class="img_flickr"></a>
+              </div>
+              <div class="col-md-4 col-sm-6 col xs-12">
+                <a href="#"><img src="https://c2.staticflickr.com/2/1434/5105070107_91bd369b01_b.jpg" alt="" class="img_flickr"></a>
+              </div>
+              <div class="col-md-4 col-sm-6 col xs-12">
+                <a href="#"><img src="https://c2.staticflickr.com/2/1434/5105070107_91bd369b01_b.jpg" alt="" class="img_flickr"></a>
+              </div>
+              <div class="col-md-4 col-sm-6 col xs-12">
+                <a href="#"><img src="https://c2.staticflickr.com/2/1434/5105070107_91bd369b01_b.jpg" alt="" class="img_flickr"></a>
+              </div>
+              <div class="col-md-4 col-sm-6 col xs-12">
+                <a href="#"><img src="https://c2.staticflickr.com/2/1434/5105070107_91bd369b01_b.jpg" alt="" class="img_flickr"></a>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="row">
+              <div class="col-md-4 col-sm-6 col xs-12">
+                <a href="#"><img src="http://f.tqn.com/y/gocalifornia/1/W/3/u/3/12168311036_11fb76416b_o.jpg" alt="" class="img_flickr"></a>
+              </div>
+              <div class="col-md-4 col-sm-6 col xs-12">
+                <a href="#"><img src="http://f.tqn.com/y/gocalifornia/1/W/3/u/3/12168311036_11fb76416b_o.jpg" alt="" class="img_flickr"></a>
+              </div>
+              <div class="col-md-4 col-sm-6 col xs-12">
+                <a href="#"><img src="http://f.tqn.com/y/gocalifornia/1/W/3/u/3/12168311036_11fb76416b_o.jpg" alt="" class="img_flickr"></a>
+              </div>
+              <div class="col-md-4 col-sm-6 col xs-12">
+                <a href="#"><img src="http://f.tqn.com/y/gocalifornia/1/W/3/u/3/12168311036_11fb76416b_o.jpg" alt="" class="img_flickr"></a>
+              </div>
+              <div class="col-md-4 col-sm-6 col xs-12">
+                <a href="#"><img src="http://f.tqn.com/y/gocalifornia/1/W/3/u/3/12168311036_11fb76416b_o.jpg" alt="" class="img_flickr"></a>
+              </div>
+              <div class="col-md-4 col-sm-6 col xs-12">
+                <a href="#"><img src="http://f.tqn.com/y/gocalifornia/1/W/3/u/3/12168311036_11fb76416b_o.jpg" alt="" class="img_flickr"></a>
+              </div>
+            </div>
+          </div>
         </div>
        
-        <div class="col-md-4 col-sm-6 col xs-12 no-padding">
-          <a href="#"><img src="https://c2.staticflickr.com/2/1434/5105070107_91bd369b01_b.jpg" alt=""></a>
-        </div>
-       </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#flickrCarousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#flickrCarousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
-    </div>
-  </div>
+    </div> <!-- Carousel -->
 <br>
 <br>
   <div class="footer">
-  <br>
-  <br>
-  <ul class="social-media">
-  <li><a href="#"><i class="fa fa-google-plus fa-2x"></i></a></li>
-  <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
-  <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
-  <li><a href="#"><i class="fa fa-instagram fa-2x"></i></a></li>
-  </ul>
-  <hr class="hr-footer">
-  <h4>&copy; Vakanz</h4>
+    <br>
+    <br>
+    <ul class="social-media">
+      <li><a href="#"><i class="fa fa-google-plus fa-2x"></i></a></li>
+      <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
+      <li><a href="#"><i class="fa fa-twitter fa-2x"></i></a></li>
+      <li><a href="#"><i class="fa fa-instagram fa-2x"></i></a></li>
+    </ul>
+    <hr class="hr-footer">
+      <h4>&copy; Vakanz</h4>
   </div>
 </body>
 </html>
