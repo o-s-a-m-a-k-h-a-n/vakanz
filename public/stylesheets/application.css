@@ -4,6 +4,21 @@ html, body {
   font-family: 'GeosansLight', sans-serif, 'Helvetica Neue';
 }
 
+@font-face {
+  font-family: 'GeosansLight';
+  src: url('/font/GeosansLight.ttf')  format('truetype');
+}
+
+@font-face {
+  font-family: 'Neou-Bold';
+  src: url('/font/Neou-Bold.ttf')  format('truetype');
+}
+
+@font-face {
+  font-family: 'Neou-Thin';
+  src: url('/font/Neou-Thin.ttf')  format('truetype');
+}
+
 body {
   background-color: #EDEFED;
 }
@@ -65,7 +80,7 @@ body {
 }
 
 .logo-left:hover {
-  color: #FFAAAA;
+  color: #FF6D00;
   transition: 1s;
 }
 
@@ -141,7 +156,7 @@ input {
 }
 
 #submit:hover {
-  background-color: #FF5A6F !important;
+  background-color: #FFAB00 !important;
   transition: 1s;
 }
 
@@ -153,7 +168,8 @@ input {
 
 /*row*/
 #result_search{
-font-family: 'Neou-Bold', sans-serif;
+font-family: 'GeosansLight', sans-serif;
+font-weight: 600;
 }
 
 .top-cities{
