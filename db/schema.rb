@@ -11,38 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327221419) do
+ActiveRecord::Schema.define(version: 20160328005106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "average_high_temperatures", force: :cascade do |t|
-    t.integer  "cities_id"
-    t.integer  "months_id"
+    t.integer  "city_id"
+    t.integer  "month_id"
     t.decimal  "temperature"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "average_low_temperatures", force: :cascade do |t|
-    t.integer  "cities_id"
-    t.integer  "months_id"
+    t.integer  "city_id"
+    t.integer  "month_id"
     t.decimal  "temperature"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "average_rainy_days", force: :cascade do |t|
-    t.integer  "cities_id"
-    t.integer  "months_id"
+    t.integer  "city_id"
+    t.integer  "month_id"
     t.integer  "count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "average_relative_humidities", force: :cascade do |t|
-    t.integer  "cities_id"
-    t.integer  "months_id"
+    t.integer  "city_id"
+    t.integer  "month_id"
     t.integer  "percent"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20160327221419) do
   end
 
   create_table "costs", force: :cascade do |t|
-    t.integer  "cities_id"
+    t.integer  "city_id"
     t.decimal  "airbnb_median"
     t.decimal  "airbnb_vs_apartment_price_ratio"
     t.decimal  "beer_in_cafe"
@@ -75,15 +75,15 @@ ActiveRecord::Schema.define(version: 20160327221419) do
   end
 
   create_table "daily_mean_temperatures", force: :cascade do |t|
-    t.integer  "cities_id"
-    t.integer  "months_id"
+    t.integer  "city_id"
+    t.integer  "month_id"
     t.decimal  "temperature"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "featured_images", force: :cascade do |t|
-    t.integer  "cities_id"
+    t.integer  "city_id"
     t.string   "px250"
     t.string   "px500"
     t.string   "px1000"
@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(version: 20160327221419) do
   end
 
   create_table "ideal_months", force: :cascade do |t|
-    t.integer  "cities_id"
-    t.integer  "months_id"
+    t.integer  "city_id"
+    t.integer  "month_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20160327221419) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.integer  "cities_id"
+    t.integer  "city_id"
     t.string   "title"
     t.string   "link"
     t.datetime "created_at"
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20160327221419) do
   end
 
   create_table "scores", force: :cascade do |t|
-    t.integer  "cities_id"
+    t.integer  "city_id"
     t.decimal  "nightlife"
     t.decimal  "safety"
     t.decimal  "free_wifi_available"

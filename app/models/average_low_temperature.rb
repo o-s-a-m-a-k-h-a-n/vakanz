@@ -1,5 +1,5 @@
 class AverageLowTemperature < ActiveRecord::Base
   
-  belongs_to :cities
-  belongs_to :months
+  belongs_to :city
+  belongs_to :month
 end

@@ -32,10 +32,8 @@
   <script src="/javascript/autocomplete.js" type="text/javascript"></script>
   <script src="/javascript/WhatsNearby.js" type="text/javascript"></script>
 
-  
-  <script src="/javascript/application.js"></script>
-
   <script src="/javascript/googleMap.js" type="text/javascript"></script>
+  <script src="/javascript/application.js"></script>
   
   <title>
     Vakanz Results Page <!-- SEO title -->
@@ -94,7 +92,7 @@
     <div class="row">
       <div class="col-md-7 col-sm-12 col-xs-12 no-padding">
       <div class="top_space">
-      <h2><span id="result_search">San Francisco</span></h2>
+      <h2><span id="result_search"><%= @searched_city %></span></h2>
     </div>
             <div class="weather">
              <div class="table-responsive">          
