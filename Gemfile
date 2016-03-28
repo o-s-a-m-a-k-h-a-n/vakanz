@@ -16,7 +16,6 @@ gem 'nokogiri'
 group :development do
  gem 'shotgun'
  gem 'tux'
- gem 'pry'
 end
 
 # group :production do

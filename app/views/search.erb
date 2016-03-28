@@ -90,7 +90,7 @@
    <br><div class="container">
 
  <div class="top_space">
-      <h2><span id="result_search"><%= @searched_city %></span></h2>
+      <h1><span id="result_search"><%= @searched_city %></span></h1>
     </div>
   <div class="container">
     <div class="row">
@@ -260,7 +260,7 @@ Nightlife: <span class="pull-right"><%= @city.scores.first.nightlife < 0.5 ? "Du
       <div class="row">
         <% @city.photos.each do |photo| %>        
         <div class="col-md-4 col-sm-6 col xs-12 city-pad">
-          <a href="#"><img src="<%= photo.link %>" alt=""></a>
+         <img class ="flickr-set" src="<%= photo.link %>" alt="">
         </div>
         <% end %>
        </div>
