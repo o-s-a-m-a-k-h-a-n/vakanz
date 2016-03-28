@@ -50,35 +50,35 @@ task "fetch:wikipedia" do
           # store average highs in degrees celcius
           if row.css("th").text == "Average high °C (°F)"
             row.css("td")[0..-2].each_with_index do |data_point, index|
-              AverageHighTemperature.create(cities_id:city.id, months_id: index+1, temperature: data_point.text[0..4])
+              AverageHighTemperature.create(city_id:city.id, month_id: index+1, temperature: data_point.text[0..4])
             end
           end
           
           # store daily means in degrees celcius
           if row.css("th").text == "Daily mean °C (°F)"
             row.css("td")[0..-2].each_with_index do |data_point, index|
-              DailyMeanTemperature.create(cities_id:city.id, months_id: index+1, temperature: data_point.text[0..4])
+              DailyMeanTemperature.create(city_id:city.id, month_id: index+1, temperature: data_point.text[0..4])
             end
           end
           
           # store average lows in degrees celcius
           if row.css("th").text == "Average low °C (°F)"
             row.css("td")[0..-2].each_with_index do |data_point, index|
-              AverageLowTemperature.create(cities_id:city.id, months_id: index+1, temperature: data_point.text[0..4])
+              AverageLowTemperature.create(city_id:city.id, month_id: index+1, temperature: data_point.text[0..4])
             end
           end
 
           # store average rainy days
           if row.css("th").text == "Average rainy days (≥ 1 mm)"
             row.css("td")[0..-2].each_with_index do |data_point, index|
-              AverageRainyDay.create(cities_id:city.id, months_id: index+1, count: data_point.text[0..4])
+              AverageRainyDay.create(city_id:city.id, month_id: index+1, count: data_point.text[0..4])
             end
           end
 
           # store average relative humidities
           if row.css("th").text == "Average relative humidity (%)"
             row.css("td")[0..-2].each_with_index do |data_point, index|
-              AverageRelativeHumidity.create(cities_id:city.id, months_id: index+1, percent: data_point.text[0..4])
+              AverageRelativeHumidity.create(city_id:city.id, month_id: index+1, percent: data_point.text[0..4])
             end
           end
 
@@ -138,11 +138,42 @@ task "fetch:nomad_list" do
       monthsToVisit = city['info']['monthsToVisit'] # returns array of month values
 
       city_record = City.create(name: name, country: country, region: region, latitude: latitude, longitude: longitude, internet_download_speed: internet_download_speed, wiki_slug: wiki_slug, flickr_tag: flickr_tag)
-      cost_record = Cost.create(cities_id: city_record.id, airbnb_median: airbnb_median, airbnb_vs_apartment_price_ratio: airbnb_vs_apartment_price_ratio, beer_in_cafe: beer_in_cafe, coffee_in_cafe: coffee_in_cafe, hotel: hotel, non_alcoholic_drink_in_cafe: non_alcoholic_drink_in_cafe)
-      score_record = Score.create(cities_id: city_record.id, nightlife: nightlife, safety: safety, free_wifi_available: free_wifi_available)
-      featured_image_record = FeaturedImage.create(cities_id: city_record.id, px250: px250, px500: px500, px1000: px1000, px1500: px1500)
+      cost_record = Cost.create(city_id: city_record.id, airbnb_median: airbnb_median, airbnb_vs_apartment_price_ratio: airbnb_vs_apartment_price_ratio, beer_in_cafe: beer_in_cafe, coffee_in_cafe: coffee_in_cafe, hotel: hotel, non_alcoholic_drink_in_cafe: non_alcoholic_drink_in_cafe)
+      score_record = Score.create(city_id: city_record.id, nightlife: nightlife, safety: safety, free_wifi_available: free_wifi_available)
+      featured_image_record = FeaturedImage.create(city_id: city_record.id, px250: px250, px500: px500, px1000: px1000, px1500: px1500)
+      
       monthsToVisit.each do |month|
-        IdealMonth.create(cities_id: city_record.id, months_id: month)
+
+        case month
+          when 1
+            month_value = "January"
+          when 2
+            month_value = "February"
+          when 3
+            month_value = "March"
+          when 4
+            month_value = "April"
+          when 5
+            month_value = "May"
+          when 6
+            month_value = "June"
+          when 7
+            month_value = "July"
+          when 8
+            month_value = "August"
+          when 9
+            month_value = "September"
+          when 10
+            month_value = "October"
+          when 11
+            month_value = "November"
+          when 12
+            month_value = "December"
+          else
+            month_value = "This place sucks! Don't come here :("
+        end
+
+        IdealMonth.create(city_id: city_record.id, month_id: month_value)
       end
     end
   else
@@ -171,7 +202,7 @@ if City.count > 0 && Photo.count == 0
           secret = photo['secret']
           image_link = "https://farm#{farm}.staticflickr.com/#{server}/#{id}_#{secret}.jpg"
           title = photo['title']
-          Photo.create(cities_id: city.id, title: title, link: image_link)
+          Photo.create(city_id: city.id, title: title, link: image_link)
         end
       end
     end

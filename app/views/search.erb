@@ -36,7 +36,7 @@
   <script src="/javascript/application.js"></script>
   
   <title>
-    Vakanz Results Page <!-- SEO title -->
+    Vakanz | <%= @city.name %>
   </title>
 </head>
 
@@ -98,6 +98,7 @@
              <div class="table-responsive">          
   <table class="table">
     <thead>
+
       <tr>
         <th>JAN</th>
         <th>FEB</th>
@@ -112,100 +113,58 @@
         <th>NOV</th>
         <th>DEC</th>
       </tr>
+
     </thead>
+
     <tbody>
-   <tr>
-        <td class="avg-mean">10&deg;</td>
-        <td class="avg-mean">15&deg;</td>
-        <td class="avg-mean">25&deg;</td>
-        <td class="avg-mean">35&deg;</td>
-        <td class="avg-mean">20&deg;</td>
-        <td class="avg-mean">10&deg;</td>
-        <td class="avg-mean">10&deg;</td>
-        <td class="avg-mean">15&deg;</td>
-        <td class="avg-mean">25&deg;</td>
-        <td class="avg-mean">35&deg;</td>
-        <td class="avg-mean">20&deg;</td>
-        <td class="avg-mean">10&deg;</td>
-      </tr>
-      <tr class="weather-widget">
-      <td><i class="wi wi-day-sunny"></i></td>
-      <td><i class="wi wi-day-cloudy"></i></td>
-      <td><i class="wi wi-day-rain"></i></td>
-      <td><i class="wi wi-day-cloudy-high"></i></td>
-      <td><i class="wi wi-day-thunderstorm"></i></td>
-      <td><i class="wi wi-day-showers"></i></td>
-      <td><i class="wi wi-day-rain-mix"></i></td>
-      <td><i class="wi wi-day-haze"></i></td>
-      <td><i class="wi wi-day-lightning"></i></td>
-      <td><i class="wi wi-day-sleet"></i></td>
-      <td><i class="wi wi-day-sunny"></i></td>
-      <td><i class="wi wi-day-fog"></i></td>
-      
-      </tr>
+
       <tr>
-        <td class="avg-high">10&deg;</td>
-        <td class="avg-high">15&deg;</td>
-        <td class="avg-high">25&deg;</td>
-        <td class="avg-high">35&deg;</td>
-        <td class="avg-high">20&deg;</td>
-        <td class="avg-high">10&deg;</td>
-        <td class="avg-high">10&deg;</td>
-        <td class="avg-high">15&deg;</td>
-        <td class="avg-high">25&deg;</td>
-        <td class="avg-high">35&deg;</td>
-        <td class="avg-high">20&deg;</td>
-        <td class="avg-high">10&deg;</td>
+        <% 12.times.each do |index| %>
+          <td class="avg-mean"><%= @city.daily_mean_temperatures.where(month_id:index+1).first.temperature ? "#{@city.daily_mean_temperatures.where(month_id:index+1).first.temperature}&deg;" : "n/a" %></td>
+          <% end %>
+      </tr>
+
+      <tr class="weather-widget">
+        <td><i class="wi wi-day-sunny"></i></td>
+        <td><i class="wi wi-day-cloudy"></i></td>
+        <td><i class="wi wi-day-rain"></i></td>
+        <td><i class="wi wi-day-cloudy-high"></i></td>
+        <td><i class="wi wi-day-thunderstorm"></i></td>
+        <td><i class="wi wi-day-showers"></i></td>
+        <td><i class="wi wi-day-rain-mix"></i></td>
+        <td><i class="wi wi-day-haze"></i></td>
+        <td><i class="wi wi-day-lightning"></i></td>
+        <td><i class="wi wi-day-sleet"></i></td>
+        <td><i class="wi wi-day-sunny"></i></td>
+        <td><i class="wi wi-day-fog"></i></td>
+      </tr>
+
+      <tr>
+        <% 12.times.each do |index| %>
+          <td class="avg-high"><%= @city.average_high_temperatures.where(month_id:index+1).first.temperature ? "#{@city.average_high_temperatures.where(month_id:index+1).first.temperature}&deg;" : "n/a" %></td>
+        <% end %>
       </tr>
     
-      <tr class="line">
-      <td class="avg-low">8&deg;</td>
-        <td class="avg-low">1&deg;</td>
-        <td class="avg-low">20&deg;</td>
-        <td class="avg-low">3&deg;</td>
-        <td class="avg-low">2&deg;</td>
-        <td class="avg-low">10&deg;</td>
-        <td class="avg-low">10&deg;</td>
-        <td class="avg-low">15&deg;</td>
-        <td class="avg-low">25&deg;</td>
-        <td class="avg-low">35&deg;</td>
-        <td class="avg-low">20&deg;</td>
-        <td class="avg-low">10&deg;</td>
-        </tr>
-
-         <tr>
-        <td class="avg-humidity">10%</td>
-        <td class="avg-humidity">15%</td>
-        <td class="avg-humidity">25%</td>
-        <td class="avg-humidity">35%</td>
-        <td class="avg-humidity">20%</td>
-        <td class="avg-humidity">10%</td>
-        <td class="avg-humidity">10%</td>
-        <td class="avg-humidity">15%</td>
-        <td class="avg-humidity">25%</td>
-        <td class="avg-humidity">35%</td>
-        <td class="avg-humidity">20%</td>
-        <td class="avg-humidity">10%</td>
+      <tr>
+      <% 12.times.each do |index| %>
+        <td class="avg-low"><%= @city.average_low_temperatures.where(month_id:index+1).first.temperature %>&deg;</td>
+        <% end %>
       </tr>
 
-       <tr>
-        <td class="avg-precipitation">10mm</td>
-        <td class="avg-precipitation">15mm</td>
-        <td class="avg-precipitation">25mm</td>
-        <td class="avg-precipitation">35mm</td>
-        <td class="avg-precipitation">20mm</td>
-        <td class="avg-precipitation">10mm</td>
-        <td class="avg-precipitation">10mm</td>
-        <td class="avg-precipitation">15mm</td>
-        <td class="avg-precipitation">25mm</td>
-        <td class="avg-precipitation">35mm</td>
-        <td class="avg-precipitation">20mm</td>
-        <td class="avg-precipitation">10mm</td>
-      </tr>
     </tbody>
   </table>
-  <span><h4 class="when-to-visit"><i class="fa fa-suitcase"></i>
- Best Months to Visit:</h4> <p class="when-to-visit-months"><span>July, August, december, january, february</span></p></span>
+
+  <span>
+    <h4 class="when-to-visit"><i class="fa fa-suitcase"></i> Best Months to Visit:</h4>
+    <p class="when-to-visit-months">
+      <span>
+        <% @city.ideal_months.each do |month| %>
+          <%= month.month_id %>&nbsp;
+        <% end %>
+      </span>
+    </p>
+  </span>
+  
   <hr>
   
   </div>
@@ -226,10 +185,10 @@
       <div class="row">
           <div class="col-md-4 col-sm-6 col xs-12 no-padding">
            <ul>
-           <li><i class="fa fa-plane"></i> Flight From You: <span class="pull-right" id="flight-from-you">$832</span> </li>
+           <li><i class="fa fa-plane"></i> Flights From You: <span class="pull-right" id="flight-from-you"><a href="http://www.skyscanner.ca/">LOGO</a></span> </li>
             <li><i class="fa fa-bed"></i>
-Hotel Cost: <span class="pull-right">$100<small>/d</small></span></li> 
-            <li><i class="fa fa-home"></i> Airbnb Apartment: <span class="pull-right">$80<small>/d</small></span></li>
+Hotel Cost: <span class="pull-right">$ <%= sprintf("%.2f", @city.costs.first.hotel) %><small>/day</small></span></li> 
+            <li><i class="fa fa-home"></i> Airbnb Apartment: <span class="pull-right">$ <%= sprintf("%.2f", @city.costs.first.airbnb_median) %><small>/d</small></span></li>
             <li><i class="fa fa-map-marker"></i>
 Walk Score: <span class="pull-right">10</span></li>
             

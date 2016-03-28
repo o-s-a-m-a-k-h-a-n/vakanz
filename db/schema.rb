@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328005106) do
+ActiveRecord::Schema.define(version: 20160328025503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20160328005106) do
   create_table "average_high_temperatures", force: :cascade do |t|
     t.integer  "city_id"
     t.integer  "month_id"
-    t.decimal  "temperature"
+    t.float    "temperature"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20160328005106) do
   create_table "average_low_temperatures", force: :cascade do |t|
     t.integer  "city_id"
     t.integer  "month_id"
-    t.decimal  "temperature"
+    t.float    "temperature"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20160328005106) do
   create_table "daily_mean_temperatures", force: :cascade do |t|
     t.integer  "city_id"
     t.integer  "month_id"
-    t.decimal  "temperature"
+    t.float    "temperature"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20160328005106) do
 
   create_table "ideal_months", force: :cascade do |t|
     t.integer  "city_id"
-    t.integer  "month_id"
+    t.string   "month_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

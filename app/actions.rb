@@ -11,8 +11,7 @@ get '/search' do
   else
     @searched_city = params['location']
     @city_name = @searched_city[0, @searched_city.index(',')]
-    @city_data = City.find_by(name: @city_name)
-    binding.pry
+    @city = City.find_by(name: @city_name)
     erb :search
   end
 end
