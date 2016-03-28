@@ -223,7 +223,7 @@ img:hover{
 
 /*google map*/
 #wn2 {
-  height: 330px !important;
+  height: 430px !important;
   display: block;
   margin-top: 100px;
   /*z-index: 1000;*/
@@ -311,6 +311,9 @@ table {
   font-size: 16px;
 }
 
+.side-header {
+  font-size: 12px;
+}
 
 
 

@@ -90,7 +90,10 @@
  
   <div class="container">
     <div class="row">
-      <div class="col-md-7 col-sm-12 col-xs-12 no-padding">
+     <div class="col-md-5 col-sm-12 col-xs-12 no-padding">
+        <div id="wn2"></div>  <!-- google map -->
+      </div>
+      <div class="col-md-7 col-sm-12 col-xs-12 ">
       <div class="top_space">
       <h2><span id="result_search"><%= @searched_city %></span></h2>
     </div>
@@ -100,6 +103,7 @@
     <thead>
 
       <tr>
+        <th></th>
         <th>JAN</th>
         <th>FEB</th>
         <th>MAR</th>
@@ -118,15 +122,8 @@
 
     <tbody>
 
-      <% if @city.daily_mean_temperatures.present? %>
-      <tr>
-        <% 12.times.each do |index| %>
-          <td class="avg-mean"><%= @city.daily_mean_temperatures.where(month_id:index+1).first.temperature %>&deg;</td>
-          <% end %>
-      </tr>
-      <% end %>
-
       <tr class="weather-widget">
+        <td class="side-header"></td>
         <td><i class="wi wi-day-sunny"></i></td>
         <td><i class="wi wi-day-cloudy"></i></td>
         <td><i class="wi wi-day-rain"></i></td>
@@ -141,8 +138,19 @@
         <td><i class="wi wi-day-fog"></i></td>
       </tr>
 
+
+      <% if @city.daily_mean_temperatures.present? %>
+      <tr>
+        <td class="side-header">Daily Mean</td>
+        <% 12.times.each do |index| %>
+          <td class="avg-mean"><%= @city.daily_mean_temperatures.where(month_id:index+1).first.temperature %>&deg;</td>
+          <% end %>
+      </tr>
+      <% end %>
+
       <% if @city.average_high_temperatures.present?  %>
       <tr>
+        <td class="side-header">Avg. High (&deg;C)</td> 
         <% 12.times.each do |index| %>
           <td class="avg-high"><%= @city.average_high_temperatures.where(month_id:index+1).first.temperature %>&deg;</td>
         <% end %>
@@ -151,6 +159,7 @@
     
       <% if @city.average_low_temperatures.present?  %>
       <tr>
+        <td class="side-header">Avg. Low (&deg;C)</td> 
       <% 12.times.each do |index| %>
         <td class="avg-low"><%= @city.average_low_temperatures.where(month_id:index+1).first.temperature %>&deg;</td>
         <% end %>
@@ -159,14 +168,16 @@
 
       <% if @city.average_relative_humidities.present? %>
       <tr>
+        <td class="side-header">Humidity</td> 
         <% 12.times.each do |index| %>
-          <td class="avg-humidity"><%= @city.average_relative_humidities.where(month_id:index+1).first.percent %> %</td>
+          <td class="avg-humidity"><%= @city.average_relative_humidities.where(month_id:index+1).first.percent %>%</td>
           <% end %>
       </tr>
       <% end %>
 
       <% if @city.average_rainy_days.present? %>
       <tr>
+      <td class="side-header">Rainy Days</td> 
         <% 12.times.each do |index| %>
           <td class="avg-precipitation"><%= @city.average_rainy_days.where(month_id:index+1).first.count %></td>
         <% end %>
@@ -196,9 +207,7 @@
   
 </div>
 </div>
-    <div class="col-md-5 col-sm-12 col-xs-12 no-padding">
-        <div id="wn2"></div>  <!-- google map -->
-      </div>
+   
     </div>
   </div>
    <br>
