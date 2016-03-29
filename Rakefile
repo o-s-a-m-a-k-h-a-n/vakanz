@@ -9,7 +9,7 @@ Rake::Task["db:drop"].clear
 desc "create the database"
 task "db:create" do
   conn = PG.connect(dbname:'postgres')
-  puts "Database 'app_vakanz' CREATED successfully" if conn.exec('CREATE DATABASE app_vakanz')
+  puts "Database 'app_vakanz' CREATED successfully" if conn.exec('CREATE DATABASE app_vakanz') # if db exists sql command for MYSQL not POSTGRES
 end
 
 desc "drop the database"
@@ -93,6 +93,7 @@ end
 
 desc 'Fetch Nomad List data and store to database if empty'
 task "fetch:nomad_list" do
+  # gem for activerecord hstore of postgres jsonb
   if City.count == 0
     nomad_list_json_feed = open("https://nomadlist.com/api/v2/list/cities").read
     data_hash = JSON.parse(nomad_list_json_feed)
@@ -101,6 +102,7 @@ task "fetch:nomad_list" do
       
       name = city['info']['city']['name']
       
+      # this could be tackled by folding down/collation only works practiccally on latin set
       if name == "kraków"
         name = "krakow"
       elsif name == "wrocław" 
