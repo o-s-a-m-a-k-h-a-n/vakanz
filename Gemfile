@@ -13,6 +13,8 @@ gem 'puma'
 
 gem 'nokogiri'
 
+gem 'kaminari'
+
 group :development do
  gem 'shotgun'
  gem 'tux'
