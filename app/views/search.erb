@@ -244,7 +244,7 @@ Cappuccino: <span class="pull-right">$ <%= sprintf("%.2f", @city.costs.first.cof
       <div class="carousel-inner">
         <div class="item active">
           <div class="row">
-            <% @photos.each do |photo| %>
+            <% @photos.slice(0,6).each do |photo| %>
             <div class="col-md-4 col-sm-6 col xs-12">
               <img src="<%= photo.link %>" alt="" class="img_flickr">
             </div>
@@ -253,7 +253,26 @@ Cappuccino: <span class="pull-right">$ <%= sprintf("%.2f", @city.costs.first.cof
         </div>
         <div class="item">
           <div class="row">
-            <% @photos.each do |photo| %>
+            <% @photos.first(100).slice(7,6).each do |photo| %>
+
+              <div class="col-md-4 col-sm-6 col xs-12">
+               <img src="<%= photo.link %>" alt="" class="img_flickr">
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="item">
+          <div class="row">
+            <% @photos.first(100).slice(13,6).each do |photo| %>
+              <div class="col-md-4 col-sm-6 col xs-12">
+               <img src="<%= photo.link %>" alt="" class="img_flickr">
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="item">
+          <div class="row">
+            <% @photos.last(6).each do |photo| %>
               <div class="col-md-4 col-sm-6 col xs-12">
                <img src="<%= photo.link %>" alt="" class="img_flickr">
               </div>
