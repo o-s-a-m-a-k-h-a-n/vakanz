@@ -28,16 +28,16 @@ body {
 .jumbotron {
   z-index:-101;
   height: 450px;
-  margin: 0 auto !important;
+  margin: 0 auto;
   position: relative;
   background-color: transparent;
   overflow: hidden;
   border-bottom: 5px solid #EDEFED;
 }
 
-.hero-heading {
-  color: #FFF !important;
-  font-size: 11em !important;
+#hero-heading {
+  color: #FFF;
+  font-size: 11em;
   text-shadow: 1px 1px 1px #080000;
   text-align: center;
   display: block;
@@ -126,12 +126,6 @@ body {
   text-decoration: none;
 }
 
-input {
-  border-radius: 0% !important;
-  height: 40px !important;
-  position: relative; 
-  z-index: 1;
-}
 
 .input-group-addon {
   border-radius: 0%;
@@ -148,7 +142,7 @@ input {
 }
 
 #submit:hover {
-  background-color: #FFAB00 !important;
+  background-color: #FFAB00;
   transition: 1s;
 }
 
@@ -191,7 +185,7 @@ img:hover{
 }
 
 .no-padding {
-   padding: 0 !important;
+   padding: 0;
    margin: 0 !important;
 }
 
@@ -203,7 +197,7 @@ img:hover{
 
 .footer h4 {
   font-family: 'Neou-Bold', sans-serif;
-  color: #fff !important;
+  color: #fff;
   text-align: center;
   font-size: 15px;
 }
@@ -235,16 +229,23 @@ img:hover{
   height: auto; 
   max-height: 200px;
   overflow-y: hidden; 
-  overflow-x: hidden;}
+  overflow-x: hidden;
+}
 
 #location {
   font-family: 'GeosansLight', sans-serif, 'Helvetica Neue';
   font-size: 1.25em;
+  border-radius: 0%;
+  height: 40px;
+  position: relative; 
+  z-index: 1;
 }
 
 /* GOOGLE MAP */
+/* important used on #wn2 height to override 
+css from plugin */
 #wn2 {
-  height: 370px !important;
+  height: 370px !important; 
   display: block;
   margin-top: 25px;
   margin-bottom: 50px;
@@ -296,7 +297,7 @@ img:hover{
   padding: 8px;
   width: 100%;
   position: relative;
-  height: 350px !important;
+  height: 350px;
 }
 
 h2 {
@@ -390,19 +391,55 @@ table th {
 
 /* Responsive layout */
 
-@media screen and (max-width: 480px) {
-  .hero-heading {
-    font-size: 5em !important;
+@media screen and (max-width: 700px) {
+  #hero-heading {
+    font-size: 5.1em;
   }
-  input {
-    display: hidden !important;
+  #location {
     text-align: center;
+    margin-left: -100px;
+  }
+  #submit {
+    margin-left: -100px;
+    width: 6.3em;
   }
 
-/* Hide date bar on mobile */
 
+
+  #result_search {
+    font-size: 0.6em;
+    margin-left: -55px;
+  }
+
+  #wn2 {
+    width: 100%;
+    height: 250px !important;
+  }
+
+  .container {
+    width: 99%;
+  }
+  
   img {
     height: 250px;
     width: 100%;
   }
+  
+  th:nth-child(odd), td:nth-child(odd){
+    display: none;
+  }
+  
+  th {
+    font-size: 15px;
+  }
+  
+  td{
+    font-size: 14px;
+  }
+  #search-logo {
+    display: none;
+  }
+
+
 }
+  

@@ -1,1 +1,1 @@
-$(document).ready(function(){});
+$(document).ready(function(){var t=document.getElementById("video1");t.muted=!0,$("#sticker").sticky({topSpacing:0}),$("#sticker_results").sticky({topSpacing:0})});
